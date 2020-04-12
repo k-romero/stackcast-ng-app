@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Video} from "./model/video";
+import {ApiService} from "../shared/api.service";
 
 @Component({
   selector: 'app-videos',
@@ -7,9 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VideosComponent implements OnInit {
 
-  constructor() { }
+  allVideos: Video[] = [];
 
-  ngOnInit(): void {
+
+  constructor(private apiService: ApiService) { }
+
+  ngOnInit() {
+    this.getAllVideos();
+  }
+
+  public getAllVideos(){
+    this.apiService.getAllVideos().subscribe(
+      res => {
+        this.allVideos = res;
+      },
+      err => {
+        alert("An error has occurred fetching videos")
+      });
+
   }
 
 }

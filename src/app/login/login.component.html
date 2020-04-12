@@ -27,7 +27,7 @@
                    [ngClass]="{ 'is-invalid': f.submitted && userName.invalid}"
                    required>
             <!-- input validation group -->
-            <div *ngIf = "f.submitted && userName.invalid" class="invalid-tooltip invalid_message">
+            <div *ngIf = "f.submitted && userName.invalid" class="invalid-tooltip invalid_message text-center w-100">
               <!-- individual validation errors-->
               <div *ngIf="userName.errors?.required">Username is not valid</div>
             </div>
@@ -48,7 +48,7 @@
                    [ngClass]="{'is-invalid': f.submitted && password.invalid}"
                    required>
             <!-- input validation group -->
-            <div *ngIf = "f.submitted && password.invalid" class="invalid-tooltip text-center invalid_message">
+            <div *ngIf = "f.submitted && password.invalid" class="invalid-tooltip invalid_message text-center w-100">
               <!-- individual validation errors-->
               <div *ngIf="password.errors?.required">Password is not valid</div>
             </div>
