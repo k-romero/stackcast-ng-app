@@ -8,31 +8,29 @@
         <h4 class="margin-top-title text-white text-center">Create an account!</h4>
       </div>
       <div class="d-flex justify-content-center form_container">
-        <form name="form" #f="ngForm" novalidate class="login-form">
+        <form name="form"
+              #f="ngForm"
+              (submit)="createUser()"
+              novalidate class="login-form">
+          <div class="text-center"><label class="text-white text-center" for="userName">Enter a username</label></div>
           <div class="input-group mb-3">
-            <div class="input-group-append">
-              <span class="input-group-text"><i class="fas fa-user"></i></span>
-            </div>
+            <div class="input-group-append"><span class="input-group-text"><i class="fas fa-user"></i></span></div>
             <!-- USER NAME INPUT-->
-            <input type="text" name="" class="form-control input_user" value="" placeholder="enter username">
+            <input placeholder="Username" type="text" name="userName" id="userName" class="form-control input_user" [(ngModel)]="userModel.userName">
           </div>
+          <div class="text-center"><label for="password" class="text-white text-center">Enter a password</label></div>
           <div class="input-group mb-3">
             <div class="input-group-append">
               <span class="input-group-text"><i class="fas fa-key"></i></span>
             </div>
             <!-- Password INPUT-->
-            <input type="password" name="" class="form-control input_pass" value="" placeholder="enter password">
-          </div>
-          <div class="input-group mb-2">
-            <div class="input-group-append">
-              <span class="input-group-text"><i class="fas fa-key"></i></span>
-            </div>
-            <!-- Password Verify INPUT-->
-            <input type="password" name="" class="form-control input_pass" value="" placeholder="confirm password">
+            <input type="password" name="password" id="password" class="form-control input_pass" placeholder="Password" [(ngModel)]="userModel.password">
           </div>
           <!-- Login Button -->
           <div class="d-flex justify-content-center mt-3 login_container">
-            <button type="button" name="button" class="btn login_btn">Submit</button>
+            <button type="submit"
+                    class="btn login_btn">Submit
+            </button>
           </div>
         </form>
       </div>

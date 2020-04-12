@@ -11,6 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import {FormsModule} from "@angular/forms";
 import { SignupComponent } from './signup/signup.component';
+import {HttpClientModule} from "@angular/common/http";
 
 const appRoutes :Routes = [
   {
@@ -55,6 +56,7 @@ const appRoutes :Routes = [
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes, {enableTracing:true}),
     AppRoutingModule
   ],

@@ -14,6 +14,4 @@ export class LoginComponent implements OnInit {
 
 }
 
-export interface User {
 
-}
