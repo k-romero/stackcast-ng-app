@@ -1,7 +1,7 @@
 .user_card {
   height: 400px;
-  width: 350px;
-  margin-top: 120px;
+  width: 400px;
+  margin-top: 15%;
   margin-bottom: auto;
   background: #343a40;
   position: relative;
@@ -15,6 +15,10 @@
   border-radius: 5px;
 
 }
+.margin-top-title {
+  margin-top: 20%;
+}
+
 .brand_logo_container {
   position: absolute;
   height: 170px;
@@ -29,39 +33,58 @@
   height: 150px;
   width: 150px;
   border-radius: 50%;
-  border: 2px solid white;
+  border: 5px solid white;
 }
 .form_container {
-  margin-top: 100px;
+  margin-top: 0;
 }
 .login_btn {
   width: 100%;
+  margin-top: -.5rem;
+  margin-bottom: .5rem;
   background: #c0392b !important;
   color: white !important;
 }
+
 .login_btn:focus {
   box-shadow: none !important;
   outline: 0px !important;
 }
+
 .login_container {
-  padding: 0 2rem;
+  padding: 0rem;
 }
+
+.login_form {
+  width: 75%;
+}
+
 .input-group-text {
   background: #c0392b !important;
   color: white !important;
   border: 0 !important;
   border-radius: 0.25rem 0 0 0.25rem !important;
 }
+
 .input_user,
 .input_pass:focus {
   box-shadow: none !important;
   outline: 0px !important;
-}
-
-.input_form {
 
 }
 
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
   background-color: #c0392b !important;
 }
+
+.input-group {
+  padding-bottom: 1rem;
+}
+
+.invalid-tooltip {
+  color: #f12d35;
+  top: 62%;
+  background-color: transparent;
+}
+
+

@@ -5,44 +5,69 @@
         <div class="brand_logo_container">
           <img src="https://i.imgur.com/T3L0zv6.png" class="brand_logo" alt="Logo">
         </div>
+        <h4 class="margin-top-title text-white text-center">Login to your account</h4>
       </div>
+
       <div class="d-flex justify-content-center form_container">
-        <form name="form" #f="ngForm" novalidate class="login-form">
-          <div class="input-group mb-3">
-            <div class="input-group-append">
-              <span class="input-group-text"><i class="fas fa-user"></i></span>
+        <form name="form"
+              #f="ngForm"
+              (ngSubmit)="f.form.valid && createUser()"
+              novalidate class="login_form">
+          <div class="text-center"><label class="text-white text-center" for="userName">Enter a username</label></div>
+          <div class="input-group">
+            <div class="input-group-append"><span class="input-group-text"><i class="fas fa-user"></i></span></div>
+            <!-- USER NAME INPUT-->
+            <input placeholder="Username"
+                   type="text"
+                   name="userName"
+                   id="userName"
+                   class="form-control"
+                   [(ngModel)]="userModel.userName"
+                   #userName= "ngModel"
+                   [ngClass]="{ 'is-invalid': f.submitted && userName.invalid}"
+                   required>
+            <!-- input validation group -->
+            <div *ngIf = "f.submitted && userName.invalid" class="invalid-tooltip invalid_message">
+              <!-- individual validation errors-->
+              <div *ngIf="userName.errors?.required">Username is not valid</div>
             </div>
-                                          <!-- USER NAME INPUT-->
-            <input type="text" name="" class="form-control input_user" value="" placeholder="username">
           </div>
-          <div class="input-group mb-2">
+          <div class="text-center"><label for="password" class="text-white text-center">Enter a password</label></div>
+          <div class="input-group mb-3 text-center">
             <div class="input-group-append">
               <span class="input-group-text"><i class="fas fa-key"></i></span>
             </div>
-                                            <!-- Password INPUT-->
-            <input type="password" name="" class="form-control input_pass" value="" placeholder="password">
-          </div>
-          <div class="form-group">
-            <div class="custom-control custom-checkbox">
-                                            <!-- Remember me checkbox-->
-              <input type="checkbox" class="custom-control-input" id="customControlInline">
-              <label class="custom-control-label text-light" for="customControlInline">Remember me</label>
+            <!-- Password INPUT-->
+            <input type="password"
+                   name="password"
+                   id="password"
+                   class="form-control input_form"
+                   placeholder="Password"
+                   [(ngModel)]="userModel.password"
+                   #password = "ngModel"
+                   [ngClass]="{'is-invalid': f.submitted && password.invalid}"
+                   required>
+            <!-- input validation group -->
+            <div *ngIf = "f.submitted && password.invalid" class="invalid-tooltip text-center invalid_message">
+              <!-- individual validation errors-->
+              <div *ngIf="password.errors?.required">Password is not valid</div>
             </div>
           </div>
-                                            <!-- Login Button -->
+          <!-- Login Button -->
           <div class="d-flex justify-content-center mt-3 login_container">
-            <button type="button" name="button" class="btn login_btn">Login</button>
+            <button type="submit"
+                    class="btn login_btn">Submit
+            </button>
           </div>
         </form>
       </div>
-
-      <div class="mt-4">
+      <div class="">
         <div class="d-flex justify-content-center links text-light">
-          Don't have an account? <a routerLink="/signUp"class="ml-2">Sign Up</a>
+          Don't have an account? <a routerLink="/signUp"class="ml-2 text-warning">Sign Up</a>
         </div>
-        <div class="d-flex justify-content-center text-white-50 links">
-          <a href="#">Forgot your password?</a>
-        </div>
+<!--        <div class="d-flex justify-content-center text-white-50 links">-->
+<!--          <a href="#">Forgot your password?</a>-->
+<!--        </div>-->
       </div>
     </div>
   </div>
