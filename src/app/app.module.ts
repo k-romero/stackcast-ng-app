@@ -10,6 +10,7 @@ import { UploadComponent } from './upload/upload.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import {FormsModule} from "@angular/forms";
+import { SignupComponent } from './signup/signup.component';
 
 const appRoutes :Routes = [
   {
@@ -23,6 +24,10 @@ const appRoutes :Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'signUp',
+    component: SignupComponent
   },
   {
     // default path
@@ -44,7 +49,8 @@ const appRoutes :Routes = [
     VideosComponent,
     UploadComponent,
     LoginComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
