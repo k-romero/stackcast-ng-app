@@ -1,62 +1,57 @@
 <div class="container">
   <!-- Video search and upload menu -->
   <div class="row justify-content-center" style="margin-top:12px;">
-    <div class="col-md-6">
+    <div class="col-md-8">
       <input type="text"
              class="form-control"
              style="width: 100%;"
              placeholder="Search videos...">
     </div>
-    <div class="">
-      <button type="button"
-              class="btn btn-success"
-              style=""><i class="fa fa-plus"></i> Upload Video
-      </button>
-    </div>
-    <div class="">
-      <button type="button"
-              class="btn btn-success pull-right"
-              style="margin-left:12px;"><i class="fa fa-plus"></i> Add Comment
-      </button>
-    </div>
+<!--    <div class="">-->
+<!--      <button type="button"-->
+<!--              class="btn btn-success"-->
+<!--              style=""><i class="fa fa-plus"></i> Upload Video-->
+<!--      </button>-->
+<!--    </div>-->
+<!--    <div class="">-->
+<!--      <button type="button"-->
+<!--              class="btn btn-success pull-right"-->
+<!--              style="margin-left:12px;"><i class="fa fa-plus"></i> Add Comment-->
+<!--      </button>-->
+<!--    </div>-->
   </div>
 
 
   <!-- Video content -->
-  <div class="row" style="margin-top: 28px;">
+  <div class="row justify-content-center" style="margin-top: 28px;">
     <!-- Videos Menu -->
-    <div class="col-md-3">
-      <br>
-      <div class="list-group list-group-flush">
-        <a class="list-group-item list-group-item-action">
-          <i class="fa fa-file-movie-o"></i>&nbsp;All
-        </a>
-        <!-- Notebook List -->
-        <a  class="list-group-item list-group-item-action">
-          <i class="fa fa-book"></i>&nbsp;
-          <input type="text" class="input-label" style="width: 80%"/>
-          <a class="pull-right text-danger">
-            <i class="fa fa-trash-o"></i>
-          </a>
-        </a>
+    <div class="col-md-8">
+      <!-- Videos List -->
+      <div *ngFor="let video of allVideos" class="list-group list-group-flush video-list-container">
+        <div class="video-details w-100 text-center">
+          <h5>{{video.videoName}}</h5>
+        </div>
+        <video class="video-fluid z-depth-1"controls="controls" preload="https://cdn.dribbble.com/users/1417337/screenshots/5750630/bubble-loader.gif" poster="">
+          <source src="{{video.videoPath}}" type="{{video.videoType}}" />
+        </video>
       </div>
     </div>
 
-    <!-- Notes Panel -->
-    <div class="col-md-9">
-      <div class="row">
-        <div class="col-md-12">
-          <!-- Message if there are no notes -->
-          <h3>Selected Video</h3>
-          <h3>All notes</h3>
-          <p>There are no notes to display in this notebook :(</p>
-        </div>
-      </div>
-      <div class="row">
-        <!-- Note list -->
-<!--        <app-note>-->
-<!--        </app-note>-->
-      </div>
-    </div>
+    <!-- Videos Panel -->
+<!--    <div class="col-md-9">-->
+<!--      <div class="row">-->
+<!--        <div class="col-md-12">-->
+<!--          &lt;!&ndash; Message if there are no Videos &ndash;&gt;-->
+<!--          <h3>Selected Video</h3>-->
+<!--          <h3>All notes</h3>-->
+<!--          <p>There are no notes to display in this notebook :(</p>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="row">-->
+<!--        &lt;!&ndash; Note list &ndash;&gt;-->
+<!--&lt;!&ndash;        <app-note>&ndash;&gt;-->
+<!--&lt;!&ndash;        </app-note>&ndash;&gt;-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
 </div>
