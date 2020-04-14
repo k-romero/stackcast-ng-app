@@ -7,18 +7,6 @@
              style="width: 100%;"
              placeholder="Search videos...">
     </div>
-<!--    <div class="">-->
-<!--      <button type="button"-->
-<!--              class="btn btn-success"-->
-<!--              style=""><i class="fa fa-plus"></i> Upload Video-->
-<!--      </button>-->
-<!--    </div>-->
-<!--    <div class="">-->
-<!--      <button type="button"-->
-<!--              class="btn btn-success pull-right"-->
-<!--              style="margin-left:12px;"><i class="fa fa-plus"></i> Add Comment-->
-<!--      </button>-->
-<!--    </div>-->
   </div>
 
 
@@ -27,7 +15,7 @@
     <!-- Videos Menu -->
     <div class="col-md-8">
       <!-- Videos List -->
-      <div *ngFor="let video of allVideos" class="list-group list-group-flush video-list-container">
+      <div *ngFor="let video of allVideos.slice().reverse()" class="list-group list-group-flush video-list-container">
         <div class="video-details w-100 text-center">
           <h5>{{video.videoName}}</h5>
         </div>

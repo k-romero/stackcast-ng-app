@@ -27,7 +27,7 @@ export class VideosComponent implements OnInit {
       err => {
         alert("An error has occurred fetching videos")
       });
-
   }
 
 }
+
