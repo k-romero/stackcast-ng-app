@@ -6,4 +6,5 @@ export class Video {
   videoViews:number;
   originalVideoKey:string;
   userId:number;
+  comments:Comment[];
 }

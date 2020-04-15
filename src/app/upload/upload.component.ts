@@ -10,13 +10,12 @@ import {HttpEventType, HttpResponse} from "@angular/common/http";
 })
 
 
-
 export class UploadComponent implements OnInit {
     selectedFiles: FileList;
     currentFile: File;
     videoName: string = '';
     progress: number = 0;
-    message: string = '';
+    errorMessage: string = '';
 
     fileInfos: Observable<any>;
 
@@ -24,8 +23,6 @@ export class UploadComponent implements OnInit {
 
     ngOnInit(): void {
     }
-
-
 
     onFileSelected(event) {
         this.selectedFiles = event.target.files;
@@ -40,12 +37,12 @@ export class UploadComponent implements OnInit {
                 if(event.type === HttpEventType.UploadProgress) {
                     this.progress = Math.round(100 * event.loaded / event.total);
                 } else if (event instanceof HttpResponse) {
-                    this.message = event.body.message;
+                    this.errorMessage = event.body.message;
                 }
             },
             err => {
                 this.progress = 0;
-                this.message = 'Could not upload the file!';
+                this.errorMessage = 'Could not upload the file!';
                 this.currentFile = undefined;
             }
         )

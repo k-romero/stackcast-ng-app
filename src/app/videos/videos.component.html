@@ -18,6 +18,7 @@
             <div *ngFor="let video of allVideos.slice().reverse()" class="list-group list-group-flush video-list-container">
                 <div class="video-details w-100 text-center">
                     <h5>{{video.videoName}}</h5>
+                    <button (click)="onVideoSelect(video.videoId)">Add comment</button>
                 </div>
                 <video class="video-fluid z-depth-1"controls="controls" poster="">
                     <source src="{{video.videoPath}}" type="{{video.videoType}}" />
