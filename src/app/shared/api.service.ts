@@ -20,7 +20,7 @@ export class ApiService {
     private  UPLOAD_VIDEO = `${this.BASE_URL_VIDEOS}\\upload`;
 
     //COMMENT ENDPOINTS
-    private  ALL_COMMENTS_BY_VIDEO_ID = `${this.BASE_URL_COMMENTS}\\show`;
+    private  ALL_COMMENTS_BY_VIDEO_ID = `${this.BASE_URL_COMMENTS}\\showByVideo`;
     private  CREATE_COMMENT = `${this.BASE_URL_COMMENTS}\\create`;
 
     //USERS ENDPOINTS
@@ -47,6 +47,10 @@ export class ApiService {
             responseType: 'json'
         });
         return this.http.request(req);
+    }
+
+    getAllCommentsFromVideo(videoId: number) : Observable<Comment[]>{
+        return this.http.get<Comment[]>(this.ALL_COMMENTS_BY_VIDEO_ID + '/' + videoId);
     }
 
     addCommentToVideo(videoId: number, comment:Comment) : Observable<any>{

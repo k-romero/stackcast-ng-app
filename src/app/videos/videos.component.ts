@@ -5,62 +5,71 @@ import { Comment } from "./model/comment";
 import {ApiService} from "../shared/api.service";
 
 @Component({
-  selector: 'app-videos',
-  templateUrl: './videos.component.html',
-  styleUrls: ['./videos.component.scss']
+    selector: 'app-videos',
+    templateUrl: './videos.component.html',
+    styleUrls: ['./videos.component.scss']
 })
 export class VideosComponent implements OnInit {
 
-  allVideos: Video[] = [];
+    allVideos: Video[] = [];
+    allComments: Comment[] = [];
 
-  isShow:Boolean = true;
-  videoId: number = 0;
+    isShow:Boolean = false;
+    videoId: number = 0;
 
-  commentModel:Comment = {
-      commentId: undefined,
-      message: "",
-      userId: undefined,
-      video: undefined
-  };
-
-
+    commentModel:Comment = {
+        commentId: undefined,
+        message: "",
+        userId: undefined,
+        video: undefined
+    };
 
 
-  constructor(private apiService: ApiService) { }
 
-  ngOnInit() {
-    this.getAllVideos();
-  }
 
-  public getAllVideos(){
-    this.apiService.getAllVideos().subscribe(
-      res => {
-        this.allVideos = res;
-      },
-      err => {
-        alert("An error has occurred fetching videos")
-      });
-  }
+    constructor(private apiService: ApiService) { }
 
-  toggleHiddenDiv() {
-      this.isShow = !this.isShow;
-  }
+    ngOnInit() {
+        this.getAllVideos();
+    }
 
-  onVideoSelect(number) {
-    this.videoId = number;
-    console.log(this.videoId);
-  }
+    public getAllVideos(){
+        this.apiService.getAllVideos().subscribe(
+            res => {
+                this.allVideos = res;
+            },
+            err => {
+                alert("An error has occurred fetching videos!");
+            });
+    }
 
-  public addCommentToVideo(){
-      this.apiService.addCommentToVideo(this.videoId,this.commentModel).subscribe(
-          res => {
-              location.reload();
-          },
-          error => {
-              alert("Error saving comment!")
-          }
-      );
-  }
+    toggleHiddenDiv() {
+        this.isShow = !this.isShow;
+    }
+
+    onVideoSelect(number) {
+        this.videoId = number;
+        this.apiService.getAllCommentsFromVideo(this.videoId).subscribe(
+            res => {
+                this.allComments = res;
+            },
+            err => {
+                alert("An error has occurred fetching comments!");
+            });
+        console.log(this.videoId);
+    }
+
+    public addCommentToVideo(){
+        this.apiService.addCommentToVideo(this.videoId,this.commentModel).subscribe(
+            res => {
+                location.reload();
+            },
+            error => {
+                alert("Error saving comment!");
+            }
+        );
+    }
+
 
 }
 

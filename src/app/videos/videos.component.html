@@ -15,15 +15,21 @@
         <!-- Videos Menu -->
         <div class="col-md-8">
             <!-- Videos List -->
-            <div *ngFor="let video of allVideos.slice().reverse()" class="list-group list-group-flush video-list-container">
-                <div class="video-details w-100 text-center">
+            <div *ngFor="let video of allVideos.slice().reverse()" class="video-list-container">
+                <div class="video-details w-100">
                     <h5>{{video.videoName}}</h5>
-                    <button (click)="onVideoSelect(video.videoId);toggleHiddenDiv();">Add comment</button>
+                    <button (click)="onVideoSelect(video.videoId);toggleHiddenDiv();" class="">Show Comments</button>
                 </div>
                 <video class="video-fluid z-depth-1"controls="controls" poster="">
                     <source src="{{video.videoPath}}" type="{{video.videoType}}" />
                 </video>
-                <div [hidden]="isShow" >HiddenDiv</div>
+                <div *ngIf="isShow" class="comments-container">
+                    <div *ngFor="let comment of video.comments">
+                        <div class="individual-comment">
+                            <p>{{comment.message}}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
