@@ -13,7 +13,7 @@ export class VideosComponent implements OnInit {
 
   allVideos: Video[] = [];
 
-
+  isShow:Boolean = true;
   videoId: number = 0;
 
   commentModel:Comment = {
@@ -40,6 +40,10 @@ export class VideosComponent implements OnInit {
       err => {
         alert("An error has occurred fetching videos")
       });
+  }
+
+  toggleHiddenDiv() {
+      this.isShow = !this.isShow;
   }
 
   onVideoSelect(number) {
