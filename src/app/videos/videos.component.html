@@ -1,45 +1,28 @@
 <div class="container-fluid">
-  <!-- Video search and upload menu -->
-  <div class="row justify-content-center" style="margin-top:12px;">
-    <div class="col-md-8">
-      <input type="text"
-             class="form-control"
-             style="width: 100%;"
-             placeholder="Search videos...">
-    </div>
-  </div>
-
-
-  <!-- Video content -->
-  <div class="row justify-content-center" style="margin-top: 28px;">
-    <!-- Videos Menu -->
-    <div class="col-md-8">
-      <!-- Videos List -->
-      <div *ngFor="let video of allVideos.slice().reverse()" class="list-group list-group-flush video-list-container">
-        <div class="video-details w-100 text-center">
-          <h5>{{video.videoName}}</h5>
+    <!-- Video search and upload menu -->
+    <div class="row justify-content-center" style="margin-top:12px;">
+        <div class="col-md-8">
+            <input type="text"
+                   class="form-control"
+                   style="width: 100%;"
+                   placeholder="Search videos...">
         </div>
-        <video class="video-fluid z-depth-1"controls="controls" preload="https://cdn.dribbble.com/users/1417337/screenshots/5750630/bubble-loader.gif" poster="">
-          <source src="{{video.videoPath}}" type="{{video.videoType}}" />
-        </video>
-      </div>
     </div>
 
-    <!-- Videos Panel -->
-<!--    <div class="col-md-9">-->
-<!--      <div class="row">-->
-<!--        <div class="col-md-12">-->
-<!--          &lt;!&ndash; Message if there are no Videos &ndash;&gt;-->
-<!--          <h3>Selected Video</h3>-->
-<!--          <h3>All notes</h3>-->
-<!--          <p>There are no notes to display in this notebook :(</p>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="row">-->
-<!--        &lt;!&ndash; Note list &ndash;&gt;-->
-<!--&lt;!&ndash;        <app-note>&ndash;&gt;-->
-<!--&lt;!&ndash;        </app-note>&ndash;&gt;-->
-<!--      </div>-->
-<!--    </div>-->
-  </div>
+
+    <!-- Video content -->
+    <div class="row justify-content-center" style="margin-top: 28px;">
+        <!-- Videos Menu -->
+        <div class="col-md-8">
+            <!-- Videos List -->
+            <div *ngFor="let video of allVideos.slice().reverse()" class="list-group list-group-flush video-list-container">
+                <div class="video-details w-100 text-center">
+                    <h5>{{video.videoName}}</h5>
+                </div>
+                <video class="video-fluid z-depth-1"controls="controls" poster="">
+                    <source src="{{video.videoPath}}" type="{{video.videoType}}" />
+                </video>
+            </div>
+        </div>
+    </div>
 </div>
