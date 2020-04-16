@@ -12,56 +12,66 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import {FormsModule} from "@angular/forms";
 import { SignupComponent } from './signup/signup.component';
 import {HttpClientModule} from "@angular/common/http";
+import { LogoutComponent } from './logout/logout.component';
+import {AuthGuardService} from "./service/auth-guard.service";
 
 const appRoutes :Routes = [
-  {
-    path: 'videos',
-    component: VideosComponent
-  },
-  {
-    path: 'upload',
-    component: UploadComponent
-  },
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'signUp',
-    component: SignupComponent
-  },
-  {
-    // default path
-    path:'',
-    component: VideosComponent,
-    pathMatch:'full'
-  },
-  {
-    // ** for any routes that dont exist
-    path:'**',
-    component:NotFoundComponent
-  }
+    {
+        path: 'videos',
+        component: VideosComponent,
+        canActivate:[AuthGuardService]
+    },
+    {
+        path: 'upload',
+        component: UploadComponent,
+        canActivate:[AuthGuardService]
+    },
+    {
+        path: 'login',
+        component: LoginComponent
+    },
+    {
+        path: 'logout',
+        component: LogoutComponent,
+        canActivate:[AuthGuardService]
+    },
+    {
+        path: 'signUp',
+        component: SignupComponent
+    },
+    {
+        // default path
+        path:'',
+        component: LoginComponent,
+        pathMatch:'full'
+    },
+    {
+        // ** for any routes that dont exist
+        path:'**',
+        component:NotFoundComponent
+    }
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavigationComponent,
-    VideosComponent,
-    UploadComponent,
-    LoginComponent,
-    NotFoundComponent,
-    SignupComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    RouterModule.forRoot(appRoutes, {enableTracing:true}),
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        NavigationComponent,
+        VideosComponent,
+        UploadComponent,
+        LoginComponent,
+        NotFoundComponent,
+        SignupComponent,
+        LogoutComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpClientModule,
+        RouterModule.forRoot(appRoutes, {enableTracing:true}),
+        AppRoutingModule
+    ],
+    providers: [],
+    bootstrap: [AppComponent]
 })
 
 export class AppModule {}

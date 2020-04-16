@@ -10,8 +10,6 @@
 
       <div class="d-flex justify-content-center form_container">
         <form name="form"
-              #f="ngForm"
-              (ngSubmit)="f.form.valid && createUser()"
               novalidate class="login_form">
           <div class=""><label class="labels" for="userName">Enter a username</label></div>
           <div class="input-group">
@@ -22,15 +20,7 @@
                    name="userName"
                    id="userName"
                    class="form-control"
-                   [(ngModel)]="userModel.userName"
-                   #userName= "ngModel"
-                   [ngClass]="{ 'is-invalid': f.submitted && userName.invalid}"
-                   required>
-            <!-- input validation group -->
-            <div *ngIf = "f.submitted && userName.invalid" class="invalid-tooltip invalid_message text-center w-100">
-              <!-- individual validation errors-->
-              <div *ngIf="userName.errors?.required">Username is not valid</div>
-            </div>
+                   [(ngModel)]="username">
           </div>
           <div class=""><label for="password" class="labels">Enter a password</label></div>
           <div class="input-group mb-3 text-center">
@@ -43,20 +33,13 @@
                    id="password"
                    class="form-control input_form"
                    placeholder="Password"
-                   [(ngModel)]="userModel.password"
-                   #password = "ngModel"
-                   [ngClass]="{'is-invalid': f.submitted && password.invalid}"
-                   required>
-            <!-- input validation group -->
-            <div *ngIf = "f.submitted && password.invalid" class="invalid-tooltip invalid_message text-center w-100">
-              <!-- individual validation errors-->
-              <div *ngIf="password.errors?.required">Password is not valid</div>
-            </div>
+                   [(ngModel)]="password">
           </div>
           <!-- Login Button -->
           <div class="d-flex justify-content-center mt-3 login_container">
             <button type="submit"
-                    class="btn login_btn">Submit
+                    class="btn login_btn"
+                    (click)="checkLogin()">Submit
             </button>
           </div>
         </form>
@@ -65,9 +48,6 @@
         <div class="d-flex justify-content-center links text-light">
           Don't have an account? <a routerLink="/signUp"class="ml-2 text-warning">Sign Up</a>
         </div>
-<!--        <div class="d-flex justify-content-center text-white-50 links">-->
-<!--          <a href="#">Forgot your password?</a>-->
-<!--        </div>-->
       </div>
     </div>
   </div>

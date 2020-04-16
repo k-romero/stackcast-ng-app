@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {AuthenticationService} from "../service/authentication.service";
+import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-login',
@@ -8,28 +11,30 @@ import {HttpClient} from "@angular/common/http";
 })
 export class LoginComponent implements OnInit {
 
+    username = '';
+    password = '';
+    invalidLogin = false;
+
+    //previous user model
   userModel:UserViewModel = {
     userName: '',
     password: '',
     isConnected: true
   };
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private loginService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  createUser(): void{
-    let url = "http://localhost:8080/zc-video-app/users/create";
-    this.http.post(url,this.userModel).subscribe(
-      res => {
-        location.reload();
-      },
-      err => {
-        alert("An error has occurred while creating user")
-      }
-    );
-  }
+    checkLogin() {
+        if (this.loginService.authenticate(this.username, this.password)
+        ) {
+            this.router.navigate(['']);
+            this.invalidLogin = false;
+        } else
+            this.invalidLogin = true;
+    }
 
 }
 
