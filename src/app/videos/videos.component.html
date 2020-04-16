@@ -24,10 +24,18 @@
                     <source src="{{video.videoPath}}" type="{{video.videoType}}" />
                 </video>
                 <div *ngIf="isShow" class="comments-container">
-                    <div *ngFor="let comment of video.comments">
-                        <div class="individual-comment">
-                            <p>{{comment.message}}</p>
+                    <div *ngFor="let comment of video.comments" id="individual-comment" >
+                        <div>
+                            <p class="comment-message">{{comment.message}}</p>
                         </div>
+                    </div>
+                    <div class="form-group shadow-textarea">
+                        <textarea class="form-control z-depth-1"
+                                  id="exampleFormControlTextarea6"
+                                  [(ngModel)]="commentModel.message"
+                                  rows="3" (keyup.enter)="addCommentToVideo(video.videoId)"
+                                  placeholder="Enter your comment here...">
+                        </textarea>
                     </div>
                 </div>
             </div>

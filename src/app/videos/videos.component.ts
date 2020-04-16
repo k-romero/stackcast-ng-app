@@ -59,8 +59,8 @@ export class VideosComponent implements OnInit {
         console.log(this.videoId);
     }
 
-    public addCommentToVideo(){
-        this.apiService.addCommentToVideo(this.videoId,this.commentModel).subscribe(
+    public addCommentToVideo(videoId:number,){
+        this.apiService.addCommentToVideo(videoId,this.commentModel).subscribe(
             res => {
                 location.reload();
             },
