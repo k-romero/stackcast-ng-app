@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
     isConnected: true
   };
 
-  constructor(private http: HttpClient, private loginService: AuthenticationService, private router: Router) { }
+  constructor(private http: HttpClient, public loginService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     checkLogin() {
         if (this.loginService.authenticate(this.username, this.password)
         ) {
-            this.router.navigate(['']);
+            this.router.navigate(['/videos']);
             this.invalidLogin = false;
         } else
             this.invalidLogin = true;
