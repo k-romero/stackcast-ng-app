@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpEvent, HttpHeaders, HttpRequest} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {Video} from "../videos/model/video";
-import {Comment} from "../videos/model/comment";
-import {UserViewModel} from "../signup/signup.component";
-import { AuthenticationService } from "../service/authentication.service";
+import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { Video } from "../videos/model/video";
+import { Comment } from "../videos/model/comment";
+import { DAOUser } from "../signup/signup.component";
+import {map} from "rxjs/operators";
 
 @Injectable({
     providedIn: 'root'
@@ -28,6 +28,9 @@ export class ApiService {
     private  CREATE_USER =  `${this.BASE_URL_USERS}\\create`;
     private  FIND_USER_BY_USERNAME =  `${this.BASE_URL_USERS}\\find`;
 
+    //AUTHENTICATION ENDPOINT
+    private REGISTER_NEW_USER = `${this.BASE_URL}\\register`;
+
     constructor(private http: HttpClient) {}
 
 
@@ -35,8 +38,8 @@ export class ApiService {
         return this.http.get<Video[]>(this.ALL_VIDEOS);
     }
 
-    createUser(user: UserViewModel) : Observable<any>{
-        return this.http.post(this.CREATE_USER,user);
+    createUser(user: DAOUser) : Observable<any>{
+        return this.http.post<any>('http://localhost:8080/register',user)
     }
 
     upload(videoName: string ,file: File): Observable<HttpEvent<any>> {

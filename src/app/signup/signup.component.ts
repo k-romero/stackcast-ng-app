@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {ApiService} from "../shared/api.service";
+import {AuthenticationService} from "../service/authentication.service";
+import {Router} from "@angular/router";
+import {Video} from "../videos/model/video";
 
 @Component({
     selector: 'app-signup',
@@ -9,19 +11,23 @@ import {ApiService} from "../shared/api.service";
 })
 export class SignupComponent implements OnInit {
 
-    userModel:UserViewModel = {
+    userModel: DAOUser = {
+        id: undefined,
         userName: '',
         password: '',
-        isConnected: true
+        dateCreated: '',
+        isConnected: true,
+        userVideos: []
     };
 
-    constructor(private apiService: ApiService) { }
+    constructor(private router: Router, private apiService: ApiService, private authService: AuthenticationService) { }
 
     ngOnInit(): void {
     }
 
-    createUser(): void{
-        this.apiService.createUser(this.userModel).subscribe(
+    createUser(){
+        console.log(this.userModel);
+         this.apiService.createUser(this.userModel).subscribe(
             res => {
                 location.reload();
             },
@@ -30,11 +36,13 @@ export class SignupComponent implements OnInit {
             }
         );
     }
-
 }
 
-export interface UserViewModel {
+export class DAOUser {
+    id:number;
     userName:string;
     password:string;
+    dateCreated:string;
     isConnected: boolean;
+    userVideos:Video[];
 }

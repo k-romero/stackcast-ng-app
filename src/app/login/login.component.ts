@@ -15,12 +15,6 @@ export class LoginComponent implements OnInit {
     password = '';
     invalidLogin = false;
 
-    //previous user model
-  userModel:UserViewModel = {
-    userName: '',
-    password: '',
-    isConnected: true
-  };
 
   constructor(private http: HttpClient, public loginService: AuthenticationService, private router: Router) { }
 
@@ -40,12 +34,6 @@ export class LoginComponent implements OnInit {
         );
     }
 
-}
-
-export interface UserViewModel {
-  userName:string;
-  password:string;
-  isConnected: boolean;
 }
 
 
