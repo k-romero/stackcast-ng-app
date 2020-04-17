@@ -11,9 +11,11 @@ import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import {FormsModule} from "@angular/forms";
 import { SignupComponent } from './signup/signup.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { LogoutComponent } from './logout/logout.component';
 import {AuthGuardService} from "./service/auth-guard.service";
+
+import { BasicAuthHttpInterceptorService } from "./service/basic-auth-interceptor.service";
 
 const appRoutes :Routes = [
     {
@@ -70,7 +72,11 @@ const appRoutes :Routes = [
         RouterModule.forRoot(appRoutes, {enableTracing:true}),
         AppRoutingModule
     ],
-    providers: [],
+    providers: [
+        {
+            provide:HTTP_INTERCEPTORS, useClass:BasicAuthHttpInterceptorService, multi:true
+        }
+    ],
     bootstrap: [AppComponent]
 })
 

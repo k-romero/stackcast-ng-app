@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpEvent, HttpRequest} from "@angular/common/http";
+import {HttpClient, HttpEvent, HttpHeaders, HttpRequest} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Video} from "../videos/model/video";
 import {Comment} from "../videos/model/comment";
 import {UserViewModel} from "../signup/signup.component";
+import { AuthenticationService } from "../service/authentication.service";
 
 @Injectable({
     providedIn: 'root'
