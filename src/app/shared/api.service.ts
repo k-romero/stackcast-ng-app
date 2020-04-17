@@ -33,13 +33,9 @@ export class ApiService {
 
     constructor(private http: HttpClient) {}
 
-
+    //VIDEO RELATED CALLS
     getAllVideos() : Observable<Video[]>{
         return this.http.get<Video[]>(this.ALL_VIDEOS);
-    }
-
-    createUser(user: DAOUser) : Observable<any>{
-        return this.http.post<any>('http://localhost:8080/register',user)
     }
 
     upload(videoName: string ,file: File): Observable<HttpEvent<any>> {
@@ -53,6 +49,7 @@ export class ApiService {
         return this.http.request(req);
     }
 
+    //COMMENT RELATED CALLS
     getAllCommentsFromVideo(videoId: number) : Observable<Comment[]>{
         return this.http.get<Comment[]>(this.ALL_COMMENTS_BY_VIDEO_ID + '/' + videoId);
     }
@@ -61,5 +58,15 @@ export class ApiService {
         return this.http.post(this.CREATE_COMMENT + '/' + videoId,comment);
     }
 
+    //USER RELATED CALLS
+    createUser(user: DAOUser) : Observable<any>{
+        return this.http.post<any>('http://localhost:8080/register',user);
+    }
+
+    getUserDetails(userName:string) : Observable<any>{
+        // const formData: FormData = new FormData();
+        // formData.append('userName',userName);
+        return this.http.get<DAOUser>(this.FIND_USER_BY_USERNAME + '/' + userName);
+    }
 
 }

@@ -20,11 +20,25 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
+    //ORIGINAL
+    // checkLogin() {
+    //     (this.loginService.authenticate(this.username, this.password).subscribe(
+    //         data => {
+    //                 this.router.navigate(['/videos']);
+    //                 this.invalidLogin = false;
+    //             },
+    //             error => {
+    //                 this.invalidLogin = true;
+    //             }
+    //         )
+    //     );
+    // }
 
     checkLogin() {
         (this.loginService.authenticate(this.username, this.password).subscribe(
-            data => {
-                    this.router.navigate(['/videos']);
+                data => {
+
+                    this.router.navigate(['/dashboard']);
                     this.invalidLogin = false;
                 },
                 error => {
@@ -33,7 +47,6 @@ export class LoginComponent implements OnInit {
             )
         );
     }
-
 }
 
 

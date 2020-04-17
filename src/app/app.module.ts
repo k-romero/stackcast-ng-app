@@ -16,11 +16,17 @@ import { LogoutComponent } from './logout/logout.component';
 import {AuthGuardService} from "./service/auth-guard.service";
 
 import { BasicAuthHttpInterceptorService } from "./service/basic-auth-interceptor.service";
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const appRoutes :Routes = [
     {
         path: 'videos',
         component: VideosComponent,
+        canActivate:[AuthGuardService]
+    },
+    {
+        path: 'dashboard',
+        component: DashboardComponent,
         canActivate:[AuthGuardService]
     },
     {
@@ -63,7 +69,8 @@ const appRoutes :Routes = [
         LoginComponent,
         NotFoundComponent,
         SignupComponent,
-        LogoutComponent
+        LogoutComponent,
+        DashboardComponent
     ],
     imports: [
         BrowserModule,
