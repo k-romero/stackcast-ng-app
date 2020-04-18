@@ -2,13 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {ApiService} from "../shared/api.service";
 import {Observable} from "rxjs";
 import {HttpEventType, HttpResponse} from "@angular/common/http";
+import {DAOUser} from "../signup/signup.component";
 
 @Component({
     selector: 'app-upload',
     templateUrl: './upload.component.html',
     styleUrls: ['./upload.component.scss']
 })
-
 
 export class UploadComponent implements OnInit {
     selectedFiles: FileList;
@@ -17,11 +17,17 @@ export class UploadComponent implements OnInit {
     progress: number = 0;
     errorMessage: string = '';
 
-    fileInfos: Observable<any>;
+    userModel: DAOUser = undefined;
 
     constructor(private apiService: ApiService) { }
 
     ngOnInit(): void {
+        this.apiService.getUserDetails(sessionStorage.getItem('username')).subscribe(
+            data => {
+                this.userModel = data;
+                console.log(this.userModel);
+            }
+        )
     }
 
     onFileSelected(event) {
@@ -32,7 +38,7 @@ export class UploadComponent implements OnInit {
     upload() {
         this.progress = 0;
         this.currentFile = this.selectedFiles.item(0);
-        this.apiService.upload(this.videoName,this.currentFile).subscribe(
+        this.apiService.upload(this.videoName,this.userModel.id,this.currentFile).subscribe(
             event => {
                 if(event.type === HttpEventType.UploadProgress) {
                     this.progress = Math.round(100 * event.loaded / event.total);

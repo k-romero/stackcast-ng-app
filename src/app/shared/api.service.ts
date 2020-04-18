@@ -19,6 +19,7 @@ export class ApiService {
     //VIDEO ENDPOINTS
     private  ALL_VIDEOS = `${this.BASE_URL_VIDEOS}\\show`;
     private  UPLOAD_VIDEO = `${this.BASE_URL_VIDEOS}\\upload`;
+    private USER_VIDEOS = `${this.BASE_URL_VIDEOS}\\showUserVideos`;
 
     //COMMENT ENDPOINTS
     private  ALL_COMMENTS_BY_VIDEO_ID = `${this.BASE_URL_COMMENTS}\\showByVideo`;
@@ -33,16 +34,21 @@ export class ApiService {
 
     constructor(private http: HttpClient) {}
 
-    //VIDEO RELATED CALLS
+    //VIDEO RELATED CALLSw
     getAllVideos() : Observable<Video[]>{
         return this.http.get<Video[]>(this.ALL_VIDEOS);
     }
 
-    upload(videoName: string ,file: File): Observable<HttpEvent<any>> {
+    getAllUserVideos(userId:number) : Observable<Video[]>{
+        console.log('Api Service Firing off with userId' + userId);
+        return this.http.get<Video[]>(this.USER_VIDEOS + '/' + userId);
+    }
+
+    upload(videoName: string,userId: number ,file: File): Observable<HttpEvent<any>> {
         const formData: FormData = new FormData();
         formData.append('file',file);
         formData.append('videoName',videoName);
-        const req = new HttpRequest('POST', this.UPLOAD_VIDEO,formData, {
+        const req = new HttpRequest('POST', this.UPLOAD_VIDEO + '/' + userId ,formData, {
             reportProgress: true,
             responseType: 'json'
         });

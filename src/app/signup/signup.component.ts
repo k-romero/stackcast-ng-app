@@ -12,7 +12,7 @@ import {Video} from "../videos/model/video";
 export class SignupComponent implements OnInit {
 
     userModel: DAOUser = {
-        id: undefined,
+        id: 0,
         userName: '',
         password: '',
         dateCreated: '',

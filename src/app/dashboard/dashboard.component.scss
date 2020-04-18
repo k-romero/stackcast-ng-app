@@ -1,0 +1,71 @@
+$roboto-cond: "Roboto Condensed", serif;
+
+.html, .body, .container{
+  height: 100vh;
+}
+
+.video-container{
+  margin-left: 2%;
+}
+
+.video-list-container {
+  max-width: 50%;
+  margin-bottom: 20px;
+  background-color: #343a40;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#list-group-item-a{
+  font-size: 1.2rem;
+}
+
+#list-group-item-a:hover #play-icon {
+  color: #3ead4b;
+}
+
+.video-fluid {
+  width: 100%;
+  height: auto;
+}
+
+.video-details {
+  display: flex;
+  justify-content: space-between;
+  font-family: $roboto-cond;
+  font-weight: lighter;
+  background-color: whitesmoke;
+  color: black;
+}
+
+.video-details h5 {
+  padding-top: 8px;
+  padding-left: 2%;
+  width: 80%;
+}
+
+.comments-container {
+  margin-top: -5px;
+  z-index: 5;
+  background-color: whitesmoke;
+}
+
+.shadow-textarea textarea.form-control::placeholder {
+  font-weight: 300;
+}
+
+.shadow-textarea textarea.form-control {
+  padding-left: 0.8rem;
+}
+
+#individual-comment{
+  border-top: 1px solid #494949 !important;
+}
+
+.individual-comment p{
+
+}
+
+.comment-message{
+  padding: 1rem;
+}
