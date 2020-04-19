@@ -30,12 +30,11 @@
                         </div>
                     </div>
                     <div class="form-group shadow-textarea">
-                        <textarea class="form-control z-depth-1"
+                        <input class="form-control z-depth-1"
                                   id="exampleFormControlTextarea6"
                                   [(ngModel)]="commentModel.message"
-                                  rows="3" (keyup.enter)="addCommentToVideo(video.videoId)"
+                                  rows="3" (keyup.enter)="addCommentToVideo(video.videoId);"
                                   placeholder="Enter your comment here...">
-                        </textarea>
                     </div>
                 </div>
             </div>

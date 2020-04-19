@@ -1,19 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import { Video } from './model/video';
-import { Comment } from './model/comment';
+import {Component, OnInit, TemplateRef} from '@angular/core';
+import {DAOUser} from '../signup/signup.component';
 import {ApiService} from '../shared/api.service';
+import {Video} from '../videos/model/video';
+import {Comment} from '../videos/model/comment';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+
 
 @Component({
-    selector: 'app-videos',
-    templateUrl: './videos.component.html',
-    styleUrls: ['./videos.component.scss']
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.scss']
 })
-export class VideosComponent implements OnInit {
+export class DashboardComponent implements OnInit {
+    // For Modal
+    modalRef: BsModalRef;
 
+
+    userModel: DAOUser = undefined;
     allVideos: Video[] = [];
     allComments: Comment[] = [];
-
     isShow = false;
     videoId = 0;
 
@@ -24,16 +29,20 @@ export class VideosComponent implements OnInit {
         video: undefined
     };
 
+  constructor(private apiService: ApiService, private modalService: BsModalService) { }
 
+  ngOnInit(): void {
+    this.apiService.getUserDetails(sessionStorage.getItem('username')).subscribe(
+        data => {
+            this.userModel = data;
+            this.getAllUserVideos();
+        }
+    );
+  }
 
-    constructor(private apiService: ApiService) { }
-
-    ngOnInit() {
-        this.getAllVideos();
-    }
-
-    public getAllVideos(){
-        this.apiService.getAllVideos().subscribe(
+    public getAllUserVideos(){
+        console.log('yes');
+        this.apiService.getAllUserVideos(this.userModel.id).subscribe(
             res => {
                 this.allVideos = res;
             },
@@ -61,13 +70,16 @@ export class VideosComponent implements OnInit {
     public addCommentToVideo(videoId: number, ){
         this.apiService.addCommentToVideo(videoId, this.commentModel).subscribe(
             res => {
-              console.log('asdasd');
+                location.reload();
             },
             error => {
                 alert('Error saving comment!');
             }
         );
-        this.allVideos.find(video => video.videoId === videoId).comments.push(this.commentModel);
     }
-}
 
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+
+}
