@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {Router, RouterModule, Routes} from "@angular/router";
+import {Router, RouterModule, Routes} from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,30 +9,30 @@ import { VideosComponent } from './videos/videos.component';
 import { UploadComponent } from './upload/upload.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule} from '@angular/forms';
 import { SignupComponent } from './signup/signup.component';
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { LogoutComponent } from './logout/logout.component';
-import {AuthGuardService} from "./service/auth-guard.service";
+import {AuthGuardService} from './service/auth-guard.service';
 
-import { BasicAuthHttpInterceptorService } from "./service/basic-auth-interceptor.service";
+import { BasicAuthHttpInterceptorService } from './service/basic-auth-interceptor.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
-const appRoutes :Routes = [
+const appRoutes: Routes = [
     {
         path: 'videos',
         component: VideosComponent,
-        canActivate:[AuthGuardService]
+        canActivate: [AuthGuardService]
     },
     {
         path: 'dashboard',
         component: DashboardComponent,
-        canActivate:[AuthGuardService]
+        canActivate: [AuthGuardService]
     },
     {
         path: 'upload',
         component: UploadComponent,
-        canActivate:[AuthGuardService]
+        canActivate: [AuthGuardService]
     },
     {
         path: 'login',
@@ -41,7 +41,7 @@ const appRoutes :Routes = [
     {
         path: 'logout',
         component: LogoutComponent,
-        canActivate:[AuthGuardService]
+        canActivate: [AuthGuardService]
     },
     {
         path: 'signUp',
@@ -49,14 +49,14 @@ const appRoutes :Routes = [
     },
     {
         // default path
-        path:'',
+        path: '',
         component: LoginComponent,
-        pathMatch:'full'
+        pathMatch: 'full'
     },
     {
         // ** for any routes that dont exist
-        path:'**',
-        component:NotFoundComponent
+        path: '**',
+        component: NotFoundComponent
     }
 ];
 
@@ -81,7 +81,7 @@ const appRoutes :Routes = [
     ],
     providers: [
         {
-            provide:HTTP_INTERCEPTORS, useClass:BasicAuthHttpInterceptorService, multi:true
+            provide: HTTP_INTERCEPTORS, useClass: BasicAuthHttpInterceptorService, multi:true
         }
     ],
     bootstrap: [AppComponent]

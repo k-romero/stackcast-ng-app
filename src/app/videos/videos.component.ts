@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import { Video } from "./model/video";
-import { Comment } from "./model/comment";
-import {ApiService} from "../shared/api.service";
+import {HttpClient} from '@angular/common/http';
+import { Video } from './model/video';
+import { Comment } from './model/comment';
+import {ApiService} from '../shared/api.service';
 
 @Component({
     selector: 'app-videos',
@@ -14,12 +14,12 @@ export class VideosComponent implements OnInit {
     allVideos: Video[] = [];
     allComments: Comment[] = [];
 
-    isShow:Boolean = false;
-    videoId: number = 0;
+    isShow = false;
+    videoId = 0;
 
-    commentModel:Comment = {
+    commentModel: Comment = {
         commentId: undefined,
-        message: "",
+        message: '',
         userId: undefined,
         video: undefined
     };
@@ -39,7 +39,7 @@ export class VideosComponent implements OnInit {
                 this.allVideos = res;
             },
             err => {
-                alert("An error has occurred fetching videos!");
+                alert('An error has occurred fetching videos!');
             });
     }
 
@@ -47,29 +47,27 @@ export class VideosComponent implements OnInit {
         this.isShow = !this.isShow;
     }
 
-    onVideoSelect(number) {
-        this.videoId = number;
+    onVideoSelect(id: number) {
+        this.videoId = id;
         this.apiService.getAllCommentsFromVideo(this.videoId).subscribe(
             res => {
                 this.allComments = res;
             },
             err => {
-                alert("An error has occurred fetching comments!");
+                alert('An error has occurred fetching comments!');
             });
         console.log(this.videoId);
     }
 
-    public addCommentToVideo(videoId:number,){
-        this.apiService.addCommentToVideo(videoId,this.commentModel).subscribe(
+    public addCommentToVideo(videoId: number, ){
+        this.apiService.addCommentToVideo(videoId, this.commentModel).subscribe(
             res => {
                 location.reload();
             },
             error => {
-                alert("Error saving comment!");
+                alert('Error saving comment!');
             }
         );
     }
-
-
 }
 

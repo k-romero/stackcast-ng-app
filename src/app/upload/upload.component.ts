@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ApiService} from "../shared/api.service";
-import {Observable} from "rxjs";
-import {HttpEventType, HttpResponse} from "@angular/common/http";
-import {DAOUser} from "../signup/signup.component";
+import {ApiService} from '../shared/api.service';
+import {Observable} from 'rxjs';
+import {HttpEventType, HttpResponse} from '@angular/common/http';
+import {DAOUser} from '../signup/signup.component';
 
 @Component({
     selector: 'app-upload',
@@ -13,9 +13,9 @@ import {DAOUser} from "../signup/signup.component";
 export class UploadComponent implements OnInit {
     selectedFiles: FileList;
     currentFile: File;
-    videoName: string = '';
-    progress: number = 0;
-    errorMessage: string = '';
+    videoName = '';
+    progress = 0;
+    errorMessage = '';
 
     userModel: DAOUser = undefined;
 
@@ -27,7 +27,7 @@ export class UploadComponent implements OnInit {
                 this.userModel = data;
                 console.log(this.userModel);
             }
-        )
+        );
     }
 
     onFileSelected(event) {
@@ -38,9 +38,9 @@ export class UploadComponent implements OnInit {
     upload() {
         this.progress = 0;
         this.currentFile = this.selectedFiles.item(0);
-        this.apiService.upload(this.videoName,this.userModel.id,this.currentFile).subscribe(
+        this.apiService.upload(this.videoName, this.userModel.id, this.currentFile).subscribe(
             event => {
-                if(event.type === HttpEventType.UploadProgress) {
+                if (event.type === HttpEventType.UploadProgress) {
                     this.progress = Math.round(100 * event.loaded / event.total);
                 } else if (event instanceof HttpResponse) {
                     this.errorMessage = event.body.message;
@@ -51,7 +51,7 @@ export class UploadComponent implements OnInit {
                 this.errorMessage = 'Could not upload the file!';
                 this.currentFile = undefined;
             }
-        )
+        );
 
     }
 }

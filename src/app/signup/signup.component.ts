@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ApiService} from "../shared/api.service";
-import {AuthenticationService} from "../service/authentication.service";
-import {Router} from "@angular/router";
-import {Video} from "../videos/model/video";
+import {ApiService} from '../shared/api.service';
+import {AuthenticationService} from '../service/authentication.service';
+import {Router} from '@angular/router';
+import {Video} from '../videos/model/video';
 
 @Component({
     selector: 'app-signup',
@@ -27,22 +27,22 @@ export class SignupComponent implements OnInit {
 
     createUser(){
         console.log(this.userModel);
-         this.apiService.createUser(this.userModel).subscribe(
+        this.apiService.createUser(this.userModel).subscribe(
             res => {
                 location.reload();
             },
             err => {
-                alert("Error creating user. Please try entering your information again.")
+                alert('Error creating user. Please try entering your information again.');
             }
         );
     }
 }
 
 export class DAOUser {
-    id:number;
-    userName:string;
-    password:string;
-    dateCreated:string;
+    id: number;
+    userName: string;
+    password: string;
+    dateCreated: string;
     isConnected: boolean;
-    userVideos:Video[];
+    userVideos: Video[];
 }
