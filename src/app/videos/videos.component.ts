@@ -26,7 +26,6 @@ export class VideosComponent implements OnInit {
 
 
 
-
     constructor(private apiService: ApiService) { }
 
     ngOnInit() {
@@ -62,12 +61,13 @@ export class VideosComponent implements OnInit {
     public addCommentToVideo(videoId: number, ){
         this.apiService.addCommentToVideo(videoId, this.commentModel).subscribe(
             res => {
-                location.reload();
+              console.log('asdasd');
             },
             error => {
                 alert('Error saving comment!');
             }
         );
+        this.allVideos.find(video => video.videoId === videoId).comments.push(this.commentModel);
     }
 }
 

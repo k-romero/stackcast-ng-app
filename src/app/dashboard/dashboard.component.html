@@ -1,34 +1,38 @@
-<p>{{userModel.id}}</p>
-<p>{{userModel.userName}}</p>
-<p>{{userModel.dateCreated}}</p>
-
-<!-- Video content -->
-<div class="row video-container" style="margin-top: 28px;">
-    <h1 class="dashboard-header">{{userModel.userName}}'s video upload history</h1>
-    <div class="video-wrapper">
-        <div *ngFor="let video of allVideos.slice().reverse()" class="video-list-container">
-            <div class="video-details">
-                <h5>{{video.videoName}}</h5>
-                <button (click)="onVideoSelect(video.videoId);toggleHiddenDiv();" class="comment-button">Show Comments</button>
-            </div>
-            <video class="video-fluid z-depth-1" controls="controls" poster="">
-                <source src="{{video.videoPath}}" type="{{video.videoType}}" />
-            </video>
-            <div *ngIf="isShow" class="comments-container">
-                <div *ngFor="let comment of video.comments" id="individual-comment" >
-                    <div>
-                        <p class="comment-message">{{comment.message}}</p>
-                    </div>
-                </div>
-                <div class="form-group shadow-textarea">
-                        <textarea class="form-control z-depth-1"
-                                  id="exampleFormControlTextarea6"
-                                  [(ngModel)]="commentModel.message"
-                                  rows="3" (keyup.enter)="addCommentToVideo(video.videoId)"
-                                  placeholder="Enter your comment here...">
-                        </textarea>
-                </div>
-            </div>
-        </div>
+<div class="container-fluid">
+  <div class="dashboard-welcome">
+    <h3>Welcome to your dashboard {{userModel.userName}}!</h3>
+  </div>
+  <div class="row video-container" style="margin-top: 28px;">
+    <div class="dashboard-header">
+      <h1 class="dashboard-header-title">{{userModel.userName}}'s video upload history</h1>
     </div>
+    <div class="video-wrapper">
+      <div *ngFor="let video of allVideos.slice().reverse()" class="video-list-container">
+        <div class="video-details">
+          <h5>{{video.videoName}}</h5>
+          <button (click)="onVideoSelect(video.videoId);toggleHiddenDiv();" class="comment-button">Show Comments
+          </button>
+        </div>
+        <video class="video-fluid z-depth-1" controls="controls" poster="">
+          <source src="{{video.videoPath}}" type="{{video.videoType}}"/>
+        </video>
+        <div *ngIf="isShow" class="comments-container">
+          <div *ngFor="let comment of video.comments" id="individual-comment">
+            <div>
+              <p class="comment-message">{{comment.message}}</p>
+            </div>
+          </div>
+          <div class="form-group shadow-textarea">
+            <textarea class="form-control z-depth-1"
+                      id="exampleFormControlTextarea6"
+                      [(ngModel)]="commentModel.message"
+                      rows="3" (keyup.enter)="addCommentToVideo(video.videoId)"
+                      placeholder="Enter your comment here...">
+            </textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
