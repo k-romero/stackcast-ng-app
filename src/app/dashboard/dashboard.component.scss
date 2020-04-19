@@ -5,11 +5,19 @@ $roboto-cond: "Roboto Condensed", serif;
 }
 
 .video-container{
-  margin-left: 2%;
+  max-width: 95%;
+  margin: 0 auto;
 }
 
+.video-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 20px;
+}
+
+
 .video-list-container {
-  max-width: 50%;
+  //max-width: 50%;
   margin-bottom: 20px;
   background-color: #343a40;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -41,7 +49,7 @@ $roboto-cond: "Roboto Condensed", serif;
 .video-details h5 {
   padding-top: 8px;
   padding-left: 2%;
-  width: 80%;
+  white-space: nowrap;
 }
 
 .comments-container {
@@ -62,10 +70,17 @@ $roboto-cond: "Roboto Condensed", serif;
   border-top: 1px solid #494949 !important;
 }
 
-.individual-comment p{
+.dashboard-header {
 
 }
 
 .comment-message{
   padding: 1rem;
+}
+
+@media (max-width: 1200px) {
+  .video-wrapper {
+    display: block;
+    width: 100%;
+  }
 }

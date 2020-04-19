@@ -3,15 +3,13 @@
 <p>{{userModel.dateCreated}}</p>
 
 <!-- Video content -->
-<div class="row justify-content-center video-container" style="margin-top: 28px;">
-    <!-- Videos Menu -->
-    <div class="col-md-12">
-        <h1 class="">{{userModel.userName}}'s video upload history</h1>
-        <!-- Videos List -->
+<div class="row video-container" style="margin-top: 28px;">
+    <h1 class="dashboard-header">{{userModel.userName}}'s video upload history</h1>
+    <div class="video-wrapper">
         <div *ngFor="let video of allVideos.slice().reverse()" class="video-list-container">
-            <div class="video-details w-100">
+            <div class="video-details">
                 <h5>{{video.videoName}}</h5>
-                <button (click)="onVideoSelect(video.videoId);toggleHiddenDiv();" class="">Show Comments</button>
+                <button (click)="onVideoSelect(video.videoId);toggleHiddenDiv();" class="comment-button">Show Comments</button>
             </div>
             <video class="video-fluid z-depth-1" controls="controls" poster="">
                 <source src="{{video.videoPath}}" type="{{video.videoType}}" />
