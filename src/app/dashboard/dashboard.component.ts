@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {DAOUser} from '../signup/signup.component';
 import {ApiService} from '../shared/api.service';
 import {Video} from '../videos/model/video';
 import {Comment} from '../videos/model/comment';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 
 
 @Component({
@@ -11,6 +12,9 @@ import {Comment} from '../videos/model/comment';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+    // For Modal
+    modalRef: BsModalRef;
+
 
     userModel: DAOUser = undefined;
     allVideos: Video[] = [];
@@ -25,7 +29,7 @@ export class DashboardComponent implements OnInit {
         video: undefined
     };
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.apiService.getUserDetails(sessionStorage.getItem('username')).subscribe(
@@ -73,5 +77,9 @@ export class DashboardComponent implements OnInit {
             }
         );
     }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
 
 }

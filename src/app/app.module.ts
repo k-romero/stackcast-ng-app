@@ -18,6 +18,8 @@ import {AuthGuardService} from './service/auth-guard.service';
 import { BasicAuthHttpInterceptorService } from './service/basic-auth-interceptor.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { VideomodalComponent } from './videomodal/videomodal.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 const appRoutes: Routes = [
@@ -84,7 +86,9 @@ const appRoutes: Routes = [
         FormsModule,
         HttpClientModule,
         RouterModule.forRoot(appRoutes, {enableTracing:true}),
-        AppRoutingModule
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        ModalModule.forRoot()
     ],
     providers: [
         {
