@@ -14,17 +14,18 @@ export class VideosComponent implements OnInit {
     allVideos: Video[] = [];
     allComments: Comment[] = [];
 
-    isShow = false;
-    videoId = 0;
+
+    newComment = null;
 
     commentModel: Comment = {
-        commentId: undefined,
-        message: '',
-        userId: undefined,
-        video: undefined
+    commentId: undefined,
+    message: '',
+    userId: undefined,
+    video: undefined
     };
 
-
+    isShow = false;
+    videoId = 0;
 
     constructor(private apiService: ApiService) { }
 
@@ -59,15 +60,15 @@ export class VideosComponent implements OnInit {
     }
 
     public addCommentToVideo(videoId: number, ){
-        this.apiService.addCommentToVideo(videoId, this.commentModel).subscribe(
+      this.apiService.addCommentToVideo(videoId, this.commentModel).subscribe(
             res => {
-              console.log('asdasd');
+              this.newComment = res;
+              this.allVideos.find(video => video.videoId === videoId).comments.push(this.newComment);
             },
             error => {
                 alert('Error saving comment!');
             }
         );
-        this.allVideos.find(video => video.videoId === videoId).comments.push(this.commentModel);
     }
 }
 
