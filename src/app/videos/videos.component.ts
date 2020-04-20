@@ -50,7 +50,7 @@ export class VideosComponent implements OnInit {
         this.isShow = !this.isShow;
     }
     clearContents() {
-      this.clear = this.clearagain;
+
     }
 
     onVideoSelect(id: number) {
