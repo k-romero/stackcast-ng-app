@@ -16,7 +16,8 @@ export class VideosComponent implements OnInit {
 
 
     newComment = null;
-
+    clear: string;
+    clearagain = '';
     commentModel: Comment = {
       commentId: undefined,
       username: sessionStorage.getItem('username'),
@@ -48,6 +49,9 @@ export class VideosComponent implements OnInit {
     toggleHiddenDiv() {
         this.isShow = !this.isShow;
     }
+    clearContents() {
+      this.clear = this.clearagain;
+    }
 
     onVideoSelect(id: number) {
         this.videoId = id;
@@ -66,11 +70,13 @@ export class VideosComponent implements OnInit {
             res => {
               this.newComment = res;
               this.allVideos.find(video => video.videoId === videoId).comments.push(this.newComment);
+              this.clear = '';
             },
             error => {
                 alert('Error saving comment!');
             }
         );
+      this.clear = '';
     }
 }
 
