@@ -3,11 +3,32 @@ import {HttpClient} from '@angular/common/http';
 import { Video } from './model/video';
 import { Comment } from './model/comment';
 import {ApiService} from '../shared/api.service';
+import { trigger, state, style, animate, transition} from '@angular/animations';
 
 @Component({
-    selector: 'app-videos',
-    templateUrl: './videos.component.html',
-    styleUrls: ['./videos.component.scss']
+  selector: 'app-videos',
+  templateUrl: './videos.component.html',
+  styleUrls: ['./videos.component.scss'],
+  animations: [
+    trigger( 'isShow', [
+      state('show', style({
+        marginTop: '-5px',
+        opacity: '1',
+        display: 'block'
+      })),
+      state( 'notshow', style({
+        marginTop: '-100px',
+        opacity: '0',
+        display: 'none'
+      })),
+      transition( 'show => notshow', [
+        animate('1s')
+      ]),
+      transition('notshow => show', [
+        animate('1s')
+      ]),
+    ]),
+  ],
 })
 export class VideosComponent implements OnInit {
 
@@ -17,7 +38,6 @@ export class VideosComponent implements OnInit {
 
     newComment = null;
     clear: string;
-    clearagain = '';
     commentModel: Comment = {
       commentId: undefined,
       username: sessionStorage.getItem('username'),
@@ -48,9 +68,6 @@ export class VideosComponent implements OnInit {
 
     toggleHiddenDiv() {
         this.isShow = !this.isShow;
-    }
-    clearContents() {
-
     }
 
     onVideoSelect(id: number) {
