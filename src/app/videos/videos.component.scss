@@ -1,5 +1,9 @@
 $roboto-cond: "Roboto Condensed", serif;
 
+.html, .body, .container{
+  height: 100vh;
+}
+
 .video-list-container {
   margin-bottom: 20px;
   background-color: #343a40;
@@ -21,6 +25,8 @@ $roboto-cond: "Roboto Condensed", serif;
 }
 
 .video-details {
+  display: flex;
+  justify-content: space-between;
   font-family: $roboto-cond;
   font-weight: lighter;
   background-color: whitesmoke;
@@ -29,8 +35,32 @@ $roboto-cond: "Roboto Condensed", serif;
 
 .video-details h5 {
   padding-top: 8px;
+  padding-left: 2%;
+  width: 80%;
 }
 
-.html, .body, .container{
-  height: 100vh;
+.comments-container {
+  margin-top: -5px;
+  z-index: 5;
+  background-color: whitesmoke;
+}
+
+.shadow-textarea textarea.form-control::placeholder {
+  font-weight: 300;
+}
+
+.shadow-textarea textarea.form-control {
+  padding-left: 0.8rem;
+}
+
+#individual-comment{
+  border-top: 1px solid #494949 !important;
+}
+
+.individual-comment p{
+
+}
+
+.comment-message{
+  padding: 1rem;
 }

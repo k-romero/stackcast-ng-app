@@ -1,3 +1,5 @@
+import {Comment} from "./comment";
+
 export class Video {
   videoId:number;
   videoName:string;
@@ -6,4 +8,5 @@ export class Video {
   videoViews:number;
   originalVideoKey:string;
   userId:number;
+  comments:Comment[];
 }

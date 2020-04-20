@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient} from '@angular/common/http';
+import {AuthenticationService} from '../service/authentication.service';
+import {Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-login',
@@ -8,35 +11,42 @@ import {HttpClient} from "@angular/common/http";
 })
 export class LoginComponent implements OnInit {
 
-  userModel:UserViewModel = {
-    userName: '',
-    password: '',
-    isConnected: true
-  };
+    username = '';
+    password = '';
+    invalidLogin = false;
 
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient, public loginService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
   }
+    // ORIGINAL
+    // checkLogin() {
+    //     (this.loginService.authenticate(this.username, this.password).subscribe(
+    //         data => {
+    //                 this.router.navigate(['/videos']);
+    //                 this.invalidLogin = false;
+    //             },
+    //             error => {
+    //                 this.invalidLogin = true;
+    //             }
+    //         )
+    //     );
+    // }
 
-  createUser(): void{
-    let url = "http://localhost:8080/zc-video-app/users/create";
-    this.http.post(url,this.userModel).subscribe(
-      res => {
-        location.reload();
-      },
-      err => {
-        alert("An error has occurred while creating user")
-      }
-    );
-  }
+    checkLogin() {
+        (this.loginService.authenticate(this.username, this.password).subscribe(
+                data => {
 
-}
-
-export interface UserViewModel {
-  userName:string;
-  password:string;
-  isConnected: boolean;
+                    this.router.navigate(['/dashboard']);
+                    this.invalidLogin = false;
+                },
+                error => {
+                    this.invalidLogin = true;
+                }
+            )
+        );
+    }
 }
 
 

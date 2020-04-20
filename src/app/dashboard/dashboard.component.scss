@@ -1,0 +1,133 @@
+$roboto-cond: "Roboto Condensed", serif;
+
+.html, .body, .container-fluid{
+  height: 100vh;
+}
+
+.row {
+  margin-top: 0!important;
+}
+
+.video-container{
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.video-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 20px;
+}
+
+
+.video-list-container {
+  //max-width: 50%;
+  margin-bottom: 20px;
+}
+#list-group-item-a{
+  font-size: 1.2rem;
+}
+
+#list-group-item-a:hover #play-icon {
+  color: #3ead4b;
+}
+
+.video-fluid {
+  width: 100%;
+  height: auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.video-details {
+  display: flex;
+  justify-content: space-between;
+  font-family: $roboto-cond;
+  font-weight: lighter;
+  background-color: whitesmoke;
+  color: black;
+}
+
+.video-details h5 {
+  padding-top: 8px;
+  padding-left: 2%;
+  white-space: nowrap;
+}
+
+.comments-container {
+  margin-top: -5px;
+  z-index: 5;
+  background-color: whitesmoke;
+}
+
+.shadow-textarea textarea.form-control::placeholder {
+  font-weight: 300;
+}
+
+.shadow-textarea textarea.form-control {
+  padding-left: 0.8rem;
+}
+
+#individual-comment{
+  border-top: 1px solid #494949 !important;
+}
+
+.dashboard-welcome {
+  width: 90%;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.dashboard-welcome h3{
+}
+
+.dashboard-header {
+  background-color: #343a40;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.dashboard-header-title {
+  font-family: $roboto-cond;
+  font-size: 22px;
+  color: white;
+  padding: 12px 0;
+  margin: 0 0 0 12px;
+}
+
+.comment-message{
+  padding: 1rem;
+}
+
+.video-modal {
+  width: 100%;
+  justify-content: center;
+}
+
+.video-modal-contents {
+  max-width: 60%;
+  margin: 10% auto 0;
+}
+
+.video-comment-button {
+  width: 100%;
+  padding: 14px 0 12px;
+  margin-top: -6px;
+  margin-bottom: 6px;
+  text-align: center;
+  background-color: #0a0a0a;
+  color: #a8a8a8;
+  cursor: pointer;
+}
+@media (max-width: 1200px) {
+  .video-wrapper {
+    display: block;
+    width: 100%;
+  }
+
+  .video-modal-contents {
+    max-width: 100%;
+  }
+}
+
