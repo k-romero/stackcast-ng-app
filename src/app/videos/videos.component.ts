@@ -18,10 +18,12 @@ export class VideosComponent implements OnInit {
     newComment = null;
 
     commentModel: Comment = {
-    commentId: undefined,
-    message: '',
-    userId: undefined,
-    video: undefined
+      commentId: undefined,
+      username: sessionStorage.getItem('username'),
+      dateCreated: undefined,
+      userId: undefined,
+      message: '',
+      video: undefined
     };
 
     isShow = false;

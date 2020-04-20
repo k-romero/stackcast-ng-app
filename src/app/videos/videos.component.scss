@@ -62,5 +62,17 @@ $roboto-cond: "Roboto Condensed", serif;
 }
 
 .comment-message{
-  padding: 1rem;
+  font-size: 2rem;
+}
+
+.comment-details {
+  display: flex;
+  justify-content: space-between;
+  width: 97%;
+  margin: 0 auto;
+
+  &-top{
+    margin-top: 20px;
+    font-weight: bold;
+  }
 }

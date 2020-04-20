@@ -26,7 +26,13 @@
                 <div *ngIf="isShow" class="comments-container">
                     <div *ngFor="let comment of video.comments" id="individual-comment" >
                         <div>
+                          <div class="comment-details comment-details-top">
+                            <p>{{comment.username}}</p>
+                            <p>{{comment.dateCreated | date:'M/d/yy - h:mm a'}}</p>
+                          </div>
+                          <div class="comment-details">
                             <p class="comment-message">{{comment.message}}</p>
+                          </div>
                         </div>
                     </div>
                     <div class="form-group shadow-textarea">
