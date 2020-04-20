@@ -23,10 +23,12 @@ export class DashboardComponent implements OnInit {
     videoId = 0;
 
     commentModel: Comment = {
-        commentId: undefined,
-        message: '',
-        userId: undefined,
-        video: undefined
+      commentId: undefined,
+      username: sessionStorage.getItem('username'),
+      dateCreated: undefined,
+      userId: undefined,
+      message: '',
+      video: undefined
     };
 
   constructor(private apiService: ApiService, private modalService: BsModalService) { }

@@ -17,7 +17,6 @@ import {AuthGuardService} from './service/auth-guard.service';
 
 import { BasicAuthHttpInterceptorService } from './service/basic-auth-interceptor.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { VideomodalComponent } from './videomodal/videomodal.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
@@ -27,10 +26,6 @@ const appRoutes: Routes = [
         path: 'videos',
         component: VideosComponent,
         canActivate: [AuthGuardService]
-    },
-    {
-    path: 'modal',
-    component: VideomodalComponent
     },
     {
         path: 'dashboard',
@@ -78,21 +73,20 @@ const appRoutes: Routes = [
         NotFoundComponent,
         SignupComponent,
         LogoutComponent,
-        DashboardComponent,
-        VideomodalComponent
+        DashboardComponent
     ],
     imports: [
         BrowserModule,
         FormsModule,
         HttpClientModule,
-        RouterModule.forRoot(appRoutes, {enableTracing:true}),
+        RouterModule.forRoot(appRoutes, {enableTracing: true}),
         AppRoutingModule,
         BrowserAnimationsModule,
         ModalModule.forRoot()
     ],
     providers: [
         {
-            provide: HTTP_INTERCEPTORS, useClass: BasicAuthHttpInterceptorService, multi:true
+            provide: HTTP_INTERCEPTORS, useClass: BasicAuthHttpInterceptorService, multi: true
         }
     ],
     bootstrap: [AppComponent]

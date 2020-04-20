@@ -3,28 +3,52 @@ import {HttpClient} from '@angular/common/http';
 import { Video } from './model/video';
 import { Comment } from './model/comment';
 import {ApiService} from '../shared/api.service';
+import { trigger, state, style, animate, transition} from '@angular/animations';
 
 @Component({
-    selector: 'app-videos',
-    templateUrl: './videos.component.html',
-    styleUrls: ['./videos.component.scss']
+  selector: 'app-videos',
+  templateUrl: './videos.component.html',
+  styleUrls: ['./videos.component.scss'],
+  animations: [
+    trigger( 'isShow', [
+      state('show', style({
+        marginTop: '-5px',
+        opacity: '1',
+        display: 'block'
+      })),
+      state( 'notshow', style({
+        marginTop: '-100px',
+        opacity: '0',
+        display: 'none'
+      })),
+      transition( 'show => notshow', [
+        animate('1s')
+      ]),
+      transition('notshow => show', [
+        animate('1s')
+      ]),
+    ]),
+  ],
 })
 export class VideosComponent implements OnInit {
 
     allVideos: Video[] = [];
     allComments: Comment[] = [];
 
-    isShow = false;
-    videoId = 0;
 
+    newComment = null;
+    clear: string;
     commentModel: Comment = {
-        commentId: undefined,
-        message: '',
-        userId: undefined,
-        video: undefined
+      commentId: undefined,
+      username: sessionStorage.getItem('username'),
+      dateCreated: undefined,
+      userId: undefined,
+      message: '',
+      video: undefined
     };
 
-
+    isShow = false;
+    videoId = 0;
 
     constructor(private apiService: ApiService) { }
 
@@ -59,15 +83,17 @@ export class VideosComponent implements OnInit {
     }
 
     public addCommentToVideo(videoId: number, ){
-        this.apiService.addCommentToVideo(videoId, this.commentModel).subscribe(
+      this.apiService.addCommentToVideo(videoId, this.commentModel).subscribe(
             res => {
-              console.log('asdasd');
+              this.newComment = res;
+              this.allVideos.find(video => video.videoId === videoId).comments.push(this.newComment);
+              this.clear = '';
             },
             error => {
                 alert('Error saving comment!');
             }
         );
-        this.allVideos.find(video => video.videoId === videoId).comments.push(this.commentModel);
+      this.clear = '';
     }
 }
 
