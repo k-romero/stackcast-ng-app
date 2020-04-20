@@ -1,7 +1,7 @@
 .user_card {
-  height: 400px;
-  width: 400px;
-  margin-top: 13%;
+  height: 500px;
+  width: 500px;
+  margin-top: 20%;
   margin-bottom: auto;
   background: linear-gradient(rgba(52, 58, 64, 0.98),rgba(52, 58, 64, 0.98));
   position: relative;
@@ -23,7 +23,7 @@
   position: absolute;
   height: 170px;
   width: 170px;
-  top: -75px;
+  top: 0px;
   border-radius: 50%;
   background: #343a40;
   padding: 10px;
@@ -110,4 +110,11 @@
 }
 .body, .container{
   height: 100vh;
+}
+
+@media (max-width: 800px) {
+  .user_card {
+    margin-top: 5%;
+  }
+
 }
