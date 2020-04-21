@@ -21,17 +21,17 @@
 
 .brand_logo_container {
   position: absolute;
-  height: 170px;
-  width: 170px;
-  top: 0px;
+  height: 200px;
+  width: 200px;
+  top: -60px;
   border-radius: 50%;
   background: #343a40;
   padding: 10px;
   text-align: center;
 }
 .brand_logo {
-  height: 150px;
-  width: 150px;
+  height: 180px;
+  width: 180px;
   border-radius: 50%;
   border: 5px solid white;
 }
@@ -114,7 +114,7 @@
 
 @media (max-width: 800px) {
   .user_card {
-    margin-top: 5%;
+    margin-top: 15%;
   }
 
 }

@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
     checkLogin() {
         (this.loginService.authenticate(this.username, this.password).subscribe(
                 data => {
-
                     this.router.navigate(['/dashboard']);
                     this.invalidLogin = false;
                 },

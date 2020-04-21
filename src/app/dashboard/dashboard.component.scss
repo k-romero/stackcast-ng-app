@@ -21,7 +21,6 @@ $roboto-cond: "Roboto Condensed", serif;
 
 
 .video-list-container {
-  //max-width: 50%;
   margin-bottom: 20px;
 }
 #list-group-item-a{
@@ -58,7 +57,7 @@ $roboto-cond: "Roboto Condensed", serif;
 .comments-container {
   margin-top: -5px;
   z-index: 5;
-  background-color: whitesmoke;
+  background-color: #d4d4d4;
 }
 
 .shadow-textarea textarea.form-control::placeholder {
@@ -98,18 +97,33 @@ $roboto-cond: "Roboto Condensed", serif;
 }
 
 .comment-message{
-  font-size: 2rem;
+  font-size: 1rem;
 }
 
-.comment-details {
-  display: flex;
-  justify-content: space-between;
-  width: 97%;
-  margin: 0 auto;
+.comment {
 
-  &-top{
-    margin-top: 20px;
-    font-weight: bold;
+  &-container {
+    margin-top: -5px;
+    z-index: 1;
+    background-color: whitesmoke;
+  }
+
+  &-details {
+    display: flex;
+    width: 97%;
+    margin: 0 auto;
+
+    &-top{
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: .8rem;
+
+      &-date{
+        padding-left: 4px;
+        color: #7f7f7f;
+        font-weight: normal;
+      }
+    }
   }
 }
 
