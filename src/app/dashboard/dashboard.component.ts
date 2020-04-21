@@ -19,6 +19,7 @@ export class DashboardComponent implements OnInit {
     };
 
     userModel: DAOUser = undefined;
+
     allVideos: Video[] = [];
     allComments: Comment[] = [];
     isShow = false;
