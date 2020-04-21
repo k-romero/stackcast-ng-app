@@ -21,9 +21,6 @@
         <video class="video-fluid z-depth-1" poster="">
           <source src="{{video.videoPath}}" type="{{video.videoType}}"/>
         </video>
-        <ng-template #template>
-
-        </ng-template>
         <div bsModal #lgModal="bs-modal" class="modal fade video-modal" tabindex="-1"
              role="dialog" aria-labelledby="dialog-sizes-name1">
           <div class="video-modal-contents">
@@ -35,7 +32,15 @@
             </div>
 
             <div *ngIf="isShow" class="comment-container">
-              <div *ngFor="let comment of video.comments" id="individual-comment">
+              <div class="form-group shadow-textarea">
+            <textarea class="form-control z-depth-1"
+                      id="exampleFormControlTextarea6"
+                      [(ngModel)]="commentModel.message"
+                      rows="3" (keyup.enter)="addCommentToVideo(video.videoId); commentModel.message=''"
+                      placeholder="Enter your comment here...">
+            </textarea>
+              </div>
+              <div *ngFor="let comment of video.comments.slice().reverse()" id="individual-comment" class="comment-individual">
                 <div>
                   <div class="comment-details comment-details-top">
                     <p>{{comment.username}}</p>
@@ -46,18 +51,9 @@
                   </div>
                 </div>
               </div>
-              <div class="form-group shadow-textarea">
-            <textarea class="form-control z-depth-1"
-                      id="exampleFormControlTextarea6"
-                      [(ngModel)]="commentModel.message"
-                      rows="3" (keyup.enter)="addCommentToVideo(video.videoId)"
-                      placeholder="Enter your comment here...">
-            </textarea>
-              </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>

@@ -26,7 +26,7 @@
         <button (click)="singleVideo=!singleVideo; isShow=false" class="single-video-button single-video-button-end">Back to videos</button>
       </div>
     </div>
-    <div class="comment-container">
+    <div *ngIf="isShow" class="comment-container">
       <div class="form-group shadow-textarea">
         <textarea placeholder="Leave a comment!"
                   [(ngModel)]="commentModel.message"
@@ -45,3 +45,4 @@
       </div>
     </div>
   </div>
+</div>
