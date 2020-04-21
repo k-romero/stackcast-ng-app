@@ -1,7 +1,7 @@
 .user_card {
-  height: 400px;
-  width: 400px;
-  margin-top: 13%;
+  height: 500px;
+  width: 500px;
+  margin-top: 20%;
   margin-bottom: auto;
   background: linear-gradient(rgba(52, 58, 64, 0.98),rgba(52, 58, 64, 0.98));
   position: relative;
@@ -21,8 +21,8 @@
 
 .brand_logo_container {
   position: absolute;
-  height: 170px;
-  width: 170px;
+  height: 200px;
+  width: 200px;
   top: -75px;
   border-radius: 50%;
   background: #343a40;
@@ -30,8 +30,8 @@
   text-align: center;
 }
 .brand_logo {
-  height: 150px;
-  width: 150px;
+  height: 180px;
+  width: 180px;
   border-radius: 50%;
   border: 5px solid white;
 }
@@ -97,7 +97,7 @@
 
 @media (max-width: 800px) {
   .user_card {
-    margin-top: 5%;
+    margin-top: 15%;
   }
 
 }

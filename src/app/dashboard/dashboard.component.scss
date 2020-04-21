@@ -147,6 +147,29 @@ $roboto-cond: "Roboto Condensed", serif;
   color: #a8a8a8;
   cursor: pointer;
 }
+
+.empty {
+  width: 100%;
+  text-align: center;
+  z-index: 1;
+  margin-top: -5%;
+
+}
+.empty-copy {
+  margin: 0 auto;
+  margin-top: -15%;
+  font-family: $roboto-cond;
+  font-size: 2rem;
+  color: #bbbbbb;
+  text-align: center;
+  z-index: 5;
+  position: relative;
+}
+
+.empty-dashboard {
+  max-width: 50%;
+  margin: 0 auto;
+}
 @media (max-width: 1200px) {
   .video-wrapper {
     display: block;

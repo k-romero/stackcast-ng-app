@@ -6,6 +6,11 @@
     <div class="dashboard-header">
       <h1 class="dashboard-header-title">{{userModel.userName}}'s video upload history</h1>
     </div>
+    <div *ngIf="isEmpty" class="empty-dashboard">
+      <img src="https://i.imgur.com/SdyhXX8.png" class="empty" alt="Empty image">
+      <p class="empty-copy">Wow such empty...<br>
+        Start uploading videos to fill your dashboard!</p>
+    </div>
     <div class="video-wrapper">
       <div *ngFor="let video of allVideos.slice().reverse()" class="video-list-container">
         <div class="video-details">

@@ -22,6 +22,7 @@ export class DashboardComponent implements OnInit {
     allVideos: Video[] = [];
     allComments: Comment[] = [];
     isShow = false;
+    isEmpty = false;
     videoId = 0;
 
     commentModel: Comment = {
@@ -49,6 +50,7 @@ export class DashboardComponent implements OnInit {
         this.apiService.getAllUserVideos(this.userModel.id).subscribe(
             res => {
                 this.allVideos = res;
+                this.toggleHiddenImage();
             },
             err => {
                 alert('An error has occurred fetching videos!');
@@ -57,6 +59,12 @@ export class DashboardComponent implements OnInit {
 
     toggleHiddenDiv() {
         this.isShow = !this.isShow;
+    }
+
+    toggleHiddenImage() {
+      if (this.allVideos.length === 0){
+        this.isEmpty = true;
+      }
     }
 
     onVideoSelect(id: number) {
