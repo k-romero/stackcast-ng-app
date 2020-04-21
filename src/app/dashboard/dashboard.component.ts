@@ -1,4 +1,4 @@
-import {Component, OnInit, TemplateRef} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DAOUser} from '../signup/signup.component';
 import {ApiService} from '../shared/api.service';
 import {Video} from '../videos/model/video';
@@ -12,79 +12,80 @@ import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-    // For Modal
-    modalRef: BsModalRef;
-    config = {
-      keyboard: false
-    };
+  // For Modal
+  modalRef: BsModalRef;
+  config = {
+    keyboard: false
+  };
 
-    userModel: DAOUser = undefined;
-    allVideos: Video[] = [];
-    allComments: Comment[] = [];
-    isShow = false;
-    videoId = 0;
+  userModel: DAOUser = undefined;
 
-    commentModel: Comment = {
-      commentId: undefined,
-      username: sessionStorage.getItem('username'),
-      dateCreated: undefined,
-      userId: undefined,
-      message: '',
-      video: undefined
-    };
+  allVideos: Video[] = [];
+  allComments: Comment[] = [];
+  isShow = false;
+  isEmpty = false;
+  videoId = 0;
+
+  commentModel: Comment = {
+    commentId: undefined,
+    username: sessionStorage.getItem('username'),
+    dateCreated: undefined,
+    userId: undefined,
+    message: '',
+    video: undefined
+  };
 
   constructor(private apiService: ApiService, private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.apiService.getUserDetails(sessionStorage.getItem('username')).subscribe(
-        data => {
-            this.userModel = data;
-            this.getAllUserVideos();
-        }
+      data => {
+        this.userModel = data;
+        this.getAllUserVideos();
+      }
     );
   }
 
-    public getAllUserVideos(){
-        console.log('yes');
-        this.apiService.getAllUserVideos(this.userModel.id).subscribe(
-            res => {
-                this.allVideos = res;
-            },
-            err => {
-                alert('An error has occurred fetching videos!');
-            });
-    }
+  public getAllUserVideos(){
+    this.apiService.getAllUserVideos(this.userModel.id).subscribe(
+      res => {
+        this.allVideos = res;
+        this.toggleHiddenImage();
+      },
+      err => {
+        alert('An error has occurred fetching videos!');
+      });
+  }
 
-    toggleHiddenDiv() {
-        this.isShow = !this.isShow;
-    }
+  toggleHiddenDiv() {
+    this.isShow = !this.isShow;
+  }
 
-    onVideoSelect(id: number) {
-        this.videoId = id;
-        this.apiService.getAllCommentsFromVideo(this.videoId).subscribe(
-            res => {
-                this.allComments = res;
-            },
-            err => {
-                alert('An error has occurred fetching comments!');
-            });
-        console.log(this.videoId);
+  toggleHiddenImage() {
+    if (this.allVideos.length === 0){
+      this.isEmpty = true;
     }
+  }
 
-    public addCommentToVideo(videoId: number, ){
-        this.apiService.addCommentToVideo(videoId, this.commentModel).subscribe(
-            res => {
-                location.reload();
-            },
-            error => {
-                alert('Error saving comment!');
-            }
-        );
-    }
+  onVideoSelect(id: number) {
+    this.videoId = id;
+    this.apiService.getAllCommentsFromVideo(this.videoId).subscribe(
+      res => {
+        this.allComments = res;
+      },
+      err => {
+        alert('An error has occurred fetching comments!');
+      });
+  }
 
-    // TODO implement new modal show function
-    openModal(template: TemplateRef<any>) {
-      this.modalRef = this.modalService.show(template, this.config);
-    }
-
+  public addCommentToVideo(videoId: number, ){
+    this.apiService.addCommentToVideo(videoId, this.commentModel).subscribe(
+      res => {
+        this.allVideos.find(value => value.videoId === videoId).comments.push(res);
+      },
+      error => {
+        alert('Error saving comment!');
+      }
+    );
+  }
 }

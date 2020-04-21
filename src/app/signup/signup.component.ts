@@ -49,7 +49,7 @@ export class SignupComponent implements OnInit {
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, this.config);
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/login']);
   }
 }
 
