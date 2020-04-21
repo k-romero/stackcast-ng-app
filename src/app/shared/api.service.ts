@@ -44,7 +44,6 @@ export class ApiService {
     }
 
     getAllUserVideos(userId: number): Observable<Video[]>{
-        console.log('Api Service Firing off with userId' + userId);
         return this.http.get<Video[]>(this.USER_VIDEOS + '/' + userId);
     }
 

@@ -47,7 +47,6 @@ export class DashboardComponent implements OnInit {
   }
 
     public getAllUserVideos(){
-        console.log('yes');
         this.apiService.getAllUserVideos(this.userModel.id).subscribe(
             res => {
                 this.allVideos = res;
@@ -77,7 +76,6 @@ export class DashboardComponent implements OnInit {
             err => {
                 alert('An error has occurred fetching comments!');
             });
-        console.log(this.videoId);
     }
 
     public addCommentToVideo(videoId: number, ){
