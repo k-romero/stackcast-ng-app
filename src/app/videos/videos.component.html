@@ -16,16 +16,16 @@
     </div>
   </div>
   <div *ngIf="singleVideo" class="single-video">
-    <div class="video-details w-100">
-      <h5>{{singleVideoModel.videoName}}</h5>
-      <div class="video-buttons">
-        <button (click)="onVideoSelect(singleVideoModel.videoId);toggleHiddenDiv();" class="">Show Comments</button>
-        <button (click)="singleVideo=!singleVideo; isShow=false" class="">Back to videos</button>
-      </div>
-    </div>
     <video class="video-fluid" controls="controls" poster="">
       <source src="{{singleVideoModel.videoPath}}" type="{{singleVideoModel.videoType}}" />
     </video>
+    <div class="video-details video-details-single w-100">
+      <h5>{{singleVideoModel.videoName}}</h5>
+      <div class="video-buttons">
+        <button (click)="onVideoSelect(singleVideoModel.videoId);toggleHiddenDiv();" class="single-video-button">Show/Hide Comments</button>
+        <button (click)="singleVideo=!singleVideo; isShow=false" class="single-video-button single-video-button-end">Back to videos</button>
+      </div>
+    </div>
     <div *ngIf="isShow" [@isShow]="isShow ? 'show' : 'notshow'" class="comment-container">
       <div class="form-group shadow-textarea">
         <input class="form-control z-depth-1"
@@ -35,7 +35,7 @@
                placeholder="Enter your comment here..."
         >
       </div>
-      <div *ngFor="let comment of singleVideoModel.comments.slice().reverse()" id="individual-comment" >
+      <div *ngFor="let comment of singleVideoModel.comments.slice().reverse()" id="individual-comment" class="comment-individual">
         <div>
           <div class="comment-details comment-details-top">
             <p>{{comment.username}}</p>

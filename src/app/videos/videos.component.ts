@@ -8,27 +8,7 @@ import { trigger, state, style, animate, transition} from '@angular/animations';
 @Component({
   selector: 'app-videos',
   templateUrl: './videos.component.html',
-  styleUrls: ['./videos.component.scss'],
-  animations: [
-    trigger( 'isShow', [
-      state('show', style({
-        marginTop: '-5px',
-        opacity: '1',
-        display: 'block'
-      })),
-      state( 'notshow', style({
-        marginTop: '-100px',
-        opacity: '0',
-        display: 'none'
-      })),
-      transition( 'show => notshow', [
-        animate('1s')
-      ]),
-      transition('notshow => show', [
-        animate('1s')
-      ]),
-    ]),
-  ],
+  styleUrls: ['./videos.component.scss']
 })
 export class VideosComponent implements OnInit {
 
