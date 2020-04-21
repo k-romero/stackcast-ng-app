@@ -20,8 +20,11 @@
       <source src="{{singleVideoModel.videoPath}}" type="{{singleVideoModel.videoType}}" />
     </video>
     <div class="video-details video-details-single w-100">
-      <h5>{{singleVideoModel.videoName}}</h5>
-      <div class="video-buttons">
+      <div class="video-details-title video-details-title-single">
+        <h5>{{singleVideoModel.videoName}}</h5>
+        <p class="video-details-view">{{singleVideoModel.videoViews}} views</p>
+      </div>
+      <div class="video-buttons single-video-buttons">
         <button (click)="onVideoSelect(singleVideoModel.videoId);toggleHiddenDiv();" class="single-video-button">Show/Hide Comments</button>
         <button (click)="singleVideo=!singleVideo; isShow=false" class="single-video-button single-video-button-end">Back to videos</button>
       </div>

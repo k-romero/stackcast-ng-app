@@ -80,5 +80,9 @@ export class VideosComponent implements OnInit {
     );
     this.clear = '';
   }
+
+  printVideo() {
+    console.log(this.singleVideoModel);
+  }
 }
 
