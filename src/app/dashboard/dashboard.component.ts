@@ -14,7 +14,9 @@ import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 export class DashboardComponent implements OnInit {
     // For Modal
     modalRef: BsModalRef;
-
+    config = {
+      keyboard: false
+    };
 
     userModel: DAOUser = undefined;
     allVideos: Video[] = [];
@@ -80,8 +82,9 @@ export class DashboardComponent implements OnInit {
         );
     }
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
-  }
+    // TODO implement new modal show function
+    openModal(template: TemplateRef<any>) {
+      this.modalRef = this.modalService.show(template, this.config);
+    }
 
 }

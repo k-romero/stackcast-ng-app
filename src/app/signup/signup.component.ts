@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {ApiService} from '../shared/api.service';
 import {AuthenticationService} from '../service/authentication.service';
 import {Router} from '@angular/router';
 import {Video} from '../videos/model/video';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
     selector: 'app-signup',
@@ -20,22 +21,36 @@ export class SignupComponent implements OnInit {
         userVideos: []
     };
 
-    constructor(private router: Router, private apiService: ApiService, private authService: AuthenticationService) { }
+    modalRef: BsModalRef;
+    config = {
+      class: 'modal-dialog-centered modal-sm',
+
+    };
+
+    constructor(private router: Router,
+                private apiService: ApiService,
+                private authService: AuthenticationService,
+                private modalService: BsModalService) { }
 
     ngOnInit(): void {
     }
 
-    createUser(){
+    createUser(template: TemplateRef<any>){
         console.log(this.userModel);
         this.apiService.createUser(this.userModel).subscribe(
             res => {
-                location.reload();
+              this.openModal(template);
             },
             err => {
                 alert('Error creating user. Please try entering your information again.');
             }
         );
     }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, this.config);
+    this.router.navigate(['/dashboard']);
+  }
 }
 
 export class DAOUser {
