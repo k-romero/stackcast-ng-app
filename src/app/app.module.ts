@@ -5,7 +5,7 @@ import {RouterModule, Routes} from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { VideosComponent } from './videos/videos.component';
+import { VideosComponent} from './videos/videos.component';
 import { UploadComponent } from './upload/upload.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -74,6 +74,7 @@ const appRoutes: Routes = [
     SignupComponent,
     LogoutComponent,
     DashboardComponent
+
   ],
   imports: [
     BrowserModule,

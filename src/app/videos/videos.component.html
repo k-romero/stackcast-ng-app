@@ -1,5 +1,6 @@
 <div class="container-fluid">
   <!-- Video content -->
+
   <div class="row justify-content-center" style="margin-top: 28px;">
     <!-- Videos Menu -->
     <div *ngIf="!singleVideo" class="col-md-8">
@@ -16,7 +17,7 @@
     </div>
   </div>
   <div *ngIf="singleVideo" class="single-video">
-    <video #directVideo (click)="singleVideoModel.videoViews = singleVideoModel.videoViews+1" class="video-fluid" controls="controls" poster="">
+    <video id="elmEvent" (mousemove)="increment()" class="video-fluid" controls="controls" poster="">
       <source src="{{singleVideoModel.videoPath}}" type="{{singleVideoModel.videoType}}" />
     </video>
     <div class="video-details video-details-single w-100">

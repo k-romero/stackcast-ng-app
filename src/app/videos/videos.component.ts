@@ -1,27 +1,35 @@
-import {Component, Directive, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Directive, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import { Video } from './model/video';
 import { Comment } from './model/comment';
 import {ApiService} from '../shared/api.service';
+
+// @Directive({
+//   selector: '[appDirectVideo]'
+// })
+// export class CardHoverDirective {
+//   constructor(private el: ElementRef) {
+//     el.nativeElement.onplaying.call(increment);
+//   }
+//
+//
+// }
+
 
 @Component({
   selector: 'app-videos',
   templateUrl: './videos.component.html',
   styleUrls: ['./videos.component.scss']
 })
-export class VideosComponent implements OnInit {
-
-  @ViewChild('directVideo', { static: true }) directVideo: ElementRef;
-
-
+export class VideosComponent implements OnInit, AfterViewInit {
   allVideos: Video[] = [];
   allComments: Comment[] = [];
-
   singleVideoModel: Video = undefined;
   singleVideo = false;
-  event: string;
-
+  eventVideo = undefined;
   newComment = null;
   clear: string;
+  isShow = false;
+  videoId = 0;
   commentModel: Comment = {
     commentId: undefined,
     username: sessionStorage.getItem('username'),
@@ -31,13 +39,17 @@ export class VideosComponent implements OnInit {
     video: undefined
   };
 
-  isShow = false;
-  videoId = 0;
+  constructor(private apiService: ApiService) {
+  }
 
-  constructor(private apiService: ApiService) { }
+  ngAfterViewInit(): void {
+    console.log(this.videoId);
+  }
 
   ngOnInit() {
     this.getAllVideos();
+    console.log(this.videoId);
+    this.videoId++;
   }
 
   public getAllVideos(){
@@ -57,6 +69,11 @@ export class VideosComponent implements OnInit {
   populateSingleVideoAndShow(currVideoId: number){
     this.singleVideoModel = this.allVideos.find(value => value.videoId === currVideoId);
     this.singleVideo = !this.singleVideo;
+    document.addEventListener('DOMContentLoad', () => {
+    this.eventVideo = document.getElementsByTagName('video')
+        .namedItem('elmEvent').addEventListener('click', this.increment);
+    });
+    console.log(this.eventVideo);
   }
 
   onVideoSelect(id: number) {
@@ -84,13 +101,11 @@ export class VideosComponent implements OnInit {
     );
     this.clear = '';
   }
-  // TODO figure out how to use eventListeners
 
-  // increment(){
-  //   this.controller = this.directVideo.nativeElement.controller;
-  //   this.controller.addEventListener('directVideo', () => this.increment(), true);
-  //   this.singleVideoModel.videoViews += 1;
-  // }
+  increment() {
+    this.singleVideoModel.videoViews += 1;
+  }
 
 }
+
 
