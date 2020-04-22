@@ -8,29 +8,20 @@ import {AfterContentInit, Component, OnInit} from '@angular/core';
 export class DemoComponent implements OnInit, AfterContentInit {
 
   videoViews = 0;
-  videoEvent = undefined;
   video = undefined;
-
+  time = 0;
   constructor() { }
 
   ngOnInit(): void {
+   this.time = document.getElementsByTagName('video')[0].currentTime;
+   console.log(this.time);
   }
 
-  incrementViews(event){
-    this.videoEvent = event;
-    const dur = event.target.duration;
-    const curr = event.target.currentTime;
-    const half = dur / 2;
-    if (curr > half){
-      this.videoViews++;
-    } else {
-      console.log('___________________');
-      console.log(event);
-      console.log('___________________');
-      console.log(event.target.duration);
-      console.log('___________________');
-      console.log(event.target.currentTime);
-    }
+  trackTime(){
+    this.time = document.getElementsByTagName('video')[0].currentTime;
+    setInterval(() => {
+      this.time = document.getElementsByTagName('video')[0].currentTime;
+    }, 100);
   }
 
   ngAfterContentInit(): void {
