@@ -16,7 +16,7 @@
     </div>
   </div>
   <div *ngIf="singleVideo" class="single-video">
-    <video class="video-fluid" controls="controls" poster="">
+    <video #directVideo (click)="singleVideoModel.videoViews = singleVideoModel.videoViews+1" class="video-fluid" controls="controls" poster="">
       <source src="{{singleVideoModel.videoPath}}" type="{{singleVideoModel.videoType}}" />
     </video>
     <div class="video-details video-details-single w-100">
