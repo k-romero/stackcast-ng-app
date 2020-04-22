@@ -13,12 +13,9 @@ export class DemoComponent implements OnInit, AfterContentInit {
   constructor() { }
 
   ngOnInit(): void {
-   this.time = document.getElementsByTagName('video')[0].currentTime;
-   console.log(this.time);
   }
 
   trackTime(){
-    this.time = document.getElementsByTagName('video')[0].currentTime;
     setInterval(() => {
       this.time = document.getElementsByTagName('video')[0].currentTime;
     }, 100);

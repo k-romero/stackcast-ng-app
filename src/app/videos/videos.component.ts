@@ -24,12 +24,15 @@ export class VideosComponent implements OnInit, AfterViewInit {
   allVideos: Video[] = [];
   allComments: Comment[] = [];
   singleVideoModel: Video = undefined;
+  prevVideoViews = 0;
   singleVideo = false;
   eventVideo = undefined;
   newComment = null;
   clear: string;
   isShow = false;
   videoId = 0;
+  time = '00.00';
+  totalTime = '00.00';
   commentModel: Comment = {
     commentId: undefined,
     username: sessionStorage.getItem('username'),
@@ -98,10 +101,32 @@ export class VideosComponent implements OnInit, AfterViewInit {
     this.clear = '';
   }
 
-  increment() {
-    this.singleVideoModel.videoViews += 1;
+  trackTime(){
+    this.prevVideoViews = this.singleVideoModel.videoViews;
+    this.time = document.getElementsByTagName('video')[0].currentTime.toFixed(2);
+    this.totalTime = document.getElementsByTagName('video')[0].duration.toFixed(2);
+    setInterval(() => {
+     const elTime = document.getElementsByTagName('video')[0].currentTime;
+     this.time = elTime.toFixed(2);
+     this.checkElapsedTime();
+    }, 200);
   }
 
+  checkElapsedTime(){
+    const t = Number(this.time);
+    const total = Number(this.totalTime);
+    if (t > total / 2 ){
+      this.increment();
+    }
+  }
+
+  increment() {
+    if (this.singleVideoModel.videoViews === this.prevVideoViews){
+      this.singleVideoModel.videoViews += 1;
+    } else {
+      console.log('this video has already been viewed this session!');
+    }
+  }
 }
 
 
