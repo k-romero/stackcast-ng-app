@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Directive, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import { Video } from './model/video';
 import { Comment } from './model/comment';
 import {ApiService} from '../shared/api.service';
@@ -10,11 +10,15 @@ import {ApiService} from '../shared/api.service';
 })
 export class VideosComponent implements OnInit {
 
+  @ViewChild('directVideo', { static: true }) directVideo: ElementRef;
+
+
   allVideos: Video[] = [];
   allComments: Comment[] = [];
 
   singleVideoModel: Video = undefined;
   singleVideo = false;
+  event: string;
 
   newComment = null;
   clear: string;
@@ -80,5 +84,13 @@ export class VideosComponent implements OnInit {
     );
     this.clear = '';
   }
+  // TODO figure out how to use eventListeners
+
+  // increment(){
+  //   this.controller = this.directVideo.nativeElement.controller;
+  //   this.controller.addEventListener('directVideo', () => this.increment(), true);
+  //   this.singleVideoModel.videoViews += 1;
+  // }
+
 }
 
