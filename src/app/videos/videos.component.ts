@@ -69,10 +69,6 @@ export class VideosComponent implements OnInit, AfterViewInit {
   populateSingleVideoAndShow(currVideoId: number){
     this.singleVideoModel = this.allVideos.find(value => value.videoId === currVideoId);
     this.singleVideo = !this.singleVideo;
-    document.addEventListener('DOMContentLoad', () => {
-    this.eventVideo = document.getElementsByTagName('video')
-        .namedItem('elmEvent').addEventListener('click', this.increment);
-    });
     console.log(this.eventVideo);
   }
 

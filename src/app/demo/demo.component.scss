@@ -1,0 +1,14 @@
+.video-container{
+  max-width: 40%;
+  margin: 15% auto 0;
+  height: 100vh;
+
+  & video{
+    width: 100%;
+  }
+
+  & p {
+    height: auto;
+  }
+}
+

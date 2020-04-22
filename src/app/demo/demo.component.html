@@ -1,0 +1,10 @@
+<div  class="video-container container">
+
+
+  <video (play)="incrementViews($event)" id="elmEvent" class="video-fluid" controls="controls" poster="">
+    <source src="https://zip-code-video-app.s3.amazonaws.com/1587421688756-Colorful_Ferris_Wheel_in_Motion.mp4" type="video/mp4" />
+  </video>
+
+  <p>{{videoViews}} views</p>
+
+</div>
