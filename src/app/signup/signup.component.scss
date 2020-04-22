@@ -1,7 +1,7 @@
 .user_card {
-  height: 400px;
-  width: 400px;
-  margin-top: 13%;
+  height: 500px;
+  width: 500px;
+  margin-top: 20%;
   margin-bottom: auto;
   background: linear-gradient(rgba(52, 58, 64, 0.98),rgba(52, 58, 64, 0.98));
   position: relative;
@@ -21,17 +21,18 @@
 
 .brand_logo_container {
   position: absolute;
-  height: 170px;
-  width: 170px;
+  height: 200px;
+  width: 200px;
   top: -75px;
   border-radius: 50%;
   background: #343a40;
   padding: 10px;
   text-align: center;
 }
+
 .brand_logo {
-  height: 150px;
-  width: 150px;
+  height: 180px;
+  width: 180px;
   border-radius: 50%;
   border: 5px solid white;
 }
@@ -92,4 +93,63 @@
 
 .body, .container{
   height: 100vh;
+}
+
+.close {
+  padding-left: 0;
+  margin-left: 0;
+}
+
+#modal-title-style {
+  margin: 0 auto;
+
+  &-p{
+    text-align: center;
+  }
+}
+
+svg {
+  width: 100px;
+  display: block;
+  margin: 10px auto 15px;
+  color: #4cb317;
+}
+
+.path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 0;
+  &.circle {
+    -webkit-animation: dash .9s ease-in-out;
+    animation: dash .9s ease-in-out;
+  }
+  &.check {
+    stroke-dashoffset: -100;
+    -webkit-animation: dash-check .9s .35s ease-in-out forwards;
+    animation: dash-check .9s .35s ease-in-out forwards;
+  }
+}
+
+@-webkit-keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
+}
+
+@keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
+}
+
+@media (max-width: 800px) {
+  .user_card {
+    margin-top: 15%;
+  }
+
 }

@@ -44,6 +44,7 @@ export class UploadComponent implements OnInit {
                     this.progress = Math.round(100 * event.loaded / event.total);
                 } else if (event instanceof HttpResponse) {
                     this.errorMessage = event.body.message;
+                    this.progress = 0;
                 }
             },
             err => {
@@ -52,7 +53,7 @@ export class UploadComponent implements OnInit {
                 this.currentFile = undefined;
             }
         );
-
+        this.progress = 0;
     }
 }
 

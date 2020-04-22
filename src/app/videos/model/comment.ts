@@ -1,9 +1,10 @@
-import {Video} from "./video";
+import {Video} from './video';
 
 export class Comment {
-commentId:number;
-userId:number;
-message:string;
-video:Video;
-
+commentId: number;
+username: string;
+dateCreated: Date;
+userId: number;
+message: string;
+video: Video;
 }

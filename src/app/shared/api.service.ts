@@ -39,8 +39,11 @@ export class ApiService {
         return this.http.get<Video[]>(this.ALL_VIDEOS);
     }
 
+    getOneVideo(videoId: number): Observable<Video>{
+      return this.http.get<Video>(this.ALL_VIDEOS + '/' + videoId);
+    }
+
     getAllUserVideos(userId: number): Observable<Video[]>{
-        console.log('Api Service Firing off with userId' + userId);
         return this.http.get<Video[]>(this.USER_VIDEOS + '/' + userId);
     }
 

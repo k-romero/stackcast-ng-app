@@ -1,73 +1,96 @@
-import { Component, OnInit } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {Component, Directive, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import { Video } from './model/video';
 import { Comment } from './model/comment';
 import {ApiService} from '../shared/api.service';
 
 @Component({
-    selector: 'app-videos',
-    templateUrl: './videos.component.html',
-    styleUrls: ['./videos.component.scss']
+  selector: 'app-videos',
+  templateUrl: './videos.component.html',
+  styleUrls: ['./videos.component.scss']
 })
 export class VideosComponent implements OnInit {
 
-    allVideos: Video[] = [];
-    allComments: Comment[] = [];
-
-    isShow = false;
-    videoId = 0;
-
-    commentModel: Comment = {
-        commentId: undefined,
-        message: '',
-        userId: undefined,
-        video: undefined
-    };
+  @ViewChild('directVideo', { static: true }) directVideo: ElementRef;
 
 
+  allVideos: Video[] = [];
+  allComments: Comment[] = [];
 
-    constructor(private apiService: ApiService) { }
+  singleVideoModel: Video = undefined;
+  singleVideo = false;
+  event: string;
 
-    ngOnInit() {
-        this.getAllVideos();
-    }
+  newComment = null;
+  clear: string;
+  commentModel: Comment = {
+    commentId: undefined,
+    username: sessionStorage.getItem('username'),
+    dateCreated: undefined,
+    userId: undefined,
+    message: '',
+    video: undefined
+  };
 
-    public getAllVideos(){
-        this.apiService.getAllVideos().subscribe(
-            res => {
-                this.allVideos = res;
-            },
-            err => {
-                alert('An error has occurred fetching videos!');
-            });
-    }
+  isShow = false;
+  videoId = 0;
 
-    toggleHiddenDiv() {
-        this.isShow = !this.isShow;
-    }
+  constructor(private apiService: ApiService) { }
 
-    onVideoSelect(id: number) {
-        this.videoId = id;
-        this.apiService.getAllCommentsFromVideo(this.videoId).subscribe(
-            res => {
-                this.allComments = res;
-            },
-            err => {
-                alert('An error has occurred fetching comments!');
-            });
-        console.log(this.videoId);
-    }
+  ngOnInit() {
+    this.getAllVideos();
+  }
 
-    public addCommentToVideo(videoId: number, ){
-        this.apiService.addCommentToVideo(videoId, this.commentModel).subscribe(
-            res => {
-              console.log('asdasd');
-            },
-            error => {
-                alert('Error saving comment!');
-            }
-        );
-        this.allVideos.find(video => video.videoId === videoId).comments.push(this.commentModel);
-    }
+  public getAllVideos(){
+    this.apiService.getAllVideos().subscribe(
+      res => {
+        this.allVideos = res;
+      },
+      err => {
+        alert('An error has occurred fetching videos!');
+      });
+  }
+
+  toggleHiddenDiv() {
+    this.isShow = !this.isShow;
+  }
+
+  populateSingleVideoAndShow(currVideoId: number){
+    this.singleVideoModel = this.allVideos.find(value => value.videoId === currVideoId);
+    this.singleVideo = !this.singleVideo;
+  }
+
+  onVideoSelect(id: number) {
+    this.videoId = id;
+    this.apiService.getAllCommentsFromVideo(this.videoId).subscribe(
+      res => {
+        this.allComments = res;
+      },
+      err => {
+        alert('An error has occurred fetching comments!');
+      });
+    console.log(this.videoId);
+  }
+
+  public addCommentToVideo(videoId: number, ){
+    this.apiService.addCommentToVideo(videoId, this.commentModel).subscribe(
+      res => {
+        this.newComment = res;
+        this.singleVideoModel.comments.push(this.newComment);
+        this.clear = '';
+      },
+      error => {
+        alert('Error saving comment!');
+      }
+    );
+    this.clear = '';
+  }
+  // TODO figure out how to use eventListeners
+
+  // increment(){
+  //   this.controller = this.directVideo.nativeElement.controller;
+  //   this.controller.addEventListener('directVideo', () => this.increment(), true);
+  //   this.singleVideoModel.videoViews += 1;
+  // }
+
 }
 
