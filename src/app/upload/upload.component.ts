@@ -25,7 +25,6 @@ export class UploadComponent implements OnInit {
         this.apiService.getUserDetails(sessionStorage.getItem('username')).subscribe(
             data => {
                 this.userModel = data;
-                console.log(this.userModel);
             }
         );
     }

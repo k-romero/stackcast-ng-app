@@ -20,6 +20,7 @@ export class ApiService {
     private  ALL_VIDEOS = `${this.BASE_URL_VIDEOS}\\show`;
     private  UPLOAD_VIDEO = `${this.BASE_URL_VIDEOS}\\upload`;
     private USER_VIDEOS = `${this.BASE_URL_VIDEOS}\\showUserVideos`;
+    private INCREMENT_VIEWS = `${this.BASE_URL_VIDEOS}\\incrementViews`;
 
     // COMMENT ENDPOINTS
     private  ALL_COMMENTS_BY_VIDEO_ID = `${this.BASE_URL_COMMENTS}\\showByVideo`;
@@ -34,7 +35,7 @@ export class ApiService {
 
     constructor(private http: HttpClient) {}
 
-    // VIDEO RELATED CALLSw
+    // VIDEO RELATED CALLS
     getAllVideos(): Observable<Video[]>{
         return this.http.get<Video[]>(this.ALL_VIDEOS);
     }
@@ -56,6 +57,13 @@ export class ApiService {
             responseType: 'json'
         });
         return this.http.request(req);
+    }
+
+    incrementViews(videoId: number): Observable<any>{
+      console.log('----------------------------------------');
+      console.log(this.INCREMENT_VIEWS + '/' + videoId);
+      console.log('----------------------------------------');
+      return this.http.get(this.INCREMENT_VIEWS + '/' + videoId);
     }
 
     // COMMENT RELATED CALLS

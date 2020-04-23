@@ -5,7 +5,7 @@ import {RouterModule, Routes} from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { VideosComponent } from './videos/videos.component';
+import { VideosComponent} from './videos/videos.component';
 import { UploadComponent } from './upload/upload.component';
 import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -19,6 +19,7 @@ import { BasicAuthHttpInterceptorService } from './service/basic-auth-intercepto
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { DemoComponent } from './demo/demo.component';
 
 
 const appRoutes: Routes = [
@@ -26,6 +27,10 @@ const appRoutes: Routes = [
     path: 'videos',
     component: VideosComponent,
     canActivate: [AuthGuardService]
+  },
+  {
+    path: 'demo',
+    component: DemoComponent
   },
   {
     path: 'dashboard',
@@ -73,7 +78,9 @@ const appRoutes: Routes = [
     NotFoundComponent,
     SignupComponent,
     LogoutComponent,
-    DashboardComponent
+    DashboardComponent,
+    DemoComponent
+
   ],
   imports: [
     BrowserModule,
