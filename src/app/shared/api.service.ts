@@ -19,6 +19,7 @@ export class ApiService {
     // VIDEO ENDPOINTS
     private  ALL_VIDEOS = `${this.BASE_URL_VIDEOS}\\show`;
     private  UPLOAD_VIDEO = `${this.BASE_URL_VIDEOS}\\upload`;
+    private  DELETE_VIDEO = `${this.BASE_URL_VIDEOS}\\delete`;
     private USER_VIDEOS = `${this.BASE_URL_VIDEOS}\\showUserVideos`;
     private INCREMENT_VIEWS = `${this.BASE_URL_VIDEOS}\\incrementViews`;
 
@@ -31,7 +32,7 @@ export class ApiService {
     private  FIND_USER_BY_USERNAME =  `${this.BASE_URL_USERS}\\find`;
 
     // AUTHENTICATION ENDPOINT
-    private REGISTER_NEW_USER = `${this.BASE_URL}\\register`;
+    private REGISTER_NEW_USER = 'http://localhost:8080/register';
 
     constructor(private http: HttpClient) {}
 
@@ -59,10 +60,11 @@ export class ApiService {
         return this.http.request(req);
     }
 
+    delete(id: number): Observable<boolean>{
+      return this.http.delete<boolean>(this.DELETE_VIDEO + '/' + id);
+    }
+
     incrementViews(videoId: number): Observable<any>{
-      console.log('----------------------------------------');
-      console.log(this.INCREMENT_VIEWS + '/' + videoId);
-      console.log('----------------------------------------');
       return this.http.get(this.INCREMENT_VIEWS + '/' + videoId);
     }
 
@@ -77,12 +79,10 @@ export class ApiService {
 
     // USER RELATED CALLS
     createUser(user: DAOUser): Observable<any>{
-        return this.http.post<any>('http://localhost:8080/register', user);
+        return this.http.post<any>(this.REGISTER_NEW_USER, user);
     }
 
     getUserDetails(userName: string): Observable<any>{
-        // const formData: FormData = new FormData();
-        // formData.append('userName',userName);
         return this.http.get<DAOUser>(this.FIND_USER_BY_USERNAME + '/' + userName);
     }
 
