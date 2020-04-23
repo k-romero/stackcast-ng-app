@@ -24,7 +24,7 @@ export class VideosComponent implements OnInit, AfterViewInit {
   allVideos: Video[] = [];
   allComments: Comment[] = [];
   singleVideoModel: Video = undefined;
-  prevVideoViews = 0;
+  viewsHasBeenIncremented = false;
   singleVideo = false;
   eventVideo = undefined;
   newComment = null;
@@ -51,8 +51,6 @@ export class VideosComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getAllVideos();
-    console.log(this.videoId);
-    this.videoId++;
   }
 
   public getAllVideos(){
@@ -84,7 +82,6 @@ export class VideosComponent implements OnInit, AfterViewInit {
       err => {
         alert('An error has occurred fetching comments!');
       });
-    console.log(this.videoId);
   }
 
   public addCommentToVideo(videoId: number, ){
@@ -102,7 +99,6 @@ export class VideosComponent implements OnInit, AfterViewInit {
   }
 
   trackTime(){
-    this.prevVideoViews = this.singleVideoModel.videoViews;
     this.time = document.getElementsByTagName('video')[0].currentTime.toFixed(2);
     this.totalTime = document.getElementsByTagName('video')[0].duration.toFixed(2);
     setInterval(() => {
@@ -121,10 +117,13 @@ export class VideosComponent implements OnInit, AfterViewInit {
   }
 
   increment() {
-    if (this.singleVideoModel.videoViews === this.prevVideoViews){
+    if (!this.viewsHasBeenIncremented){
       this.singleVideoModel.videoViews += 1;
-    } else {
-      console.log('this video has already been viewed this session!');
+      this.apiService.incrementViews(this.singleVideoModel.videoId).subscribe();
+      console.log('----------------------------------------');
+      console.log('Api called from component!');
+      console.log('----------------------------------------');
+      this.viewsHasBeenIncremented = true;
     }
   }
 }
