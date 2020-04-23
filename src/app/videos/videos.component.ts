@@ -20,13 +20,16 @@ import {ApiService} from '../shared/api.service';
   templateUrl: './videos.component.html',
   styleUrls: ['./videos.component.scss']
 })
-export class VideosComponent implements OnInit, AfterViewInit {
+export class VideosComponent implements OnInit {
   allVideos: Video[] = [];
   allComments: Comment[] = [];
   singleVideoModel: Video = undefined;
-  viewsHasBeenIncremented = false;
+
+  // for video views
+  videoViewFired = false;
+
   singleVideo = false;
-  eventVideo = undefined;
+
   newComment = null;
   clear: string;
   isShow = false;
@@ -43,10 +46,6 @@ export class VideosComponent implements OnInit, AfterViewInit {
   };
 
   constructor(private apiService: ApiService) {
-  }
-
-  ngAfterViewInit(): void {
-    console.log(this.videoId);
   }
 
   ngOnInit() {
@@ -70,7 +69,6 @@ export class VideosComponent implements OnInit, AfterViewInit {
   populateSingleVideoAndShow(currVideoId: number){
     this.singleVideoModel = this.allVideos.find(value => value.videoId === currVideoId);
     this.singleVideo = !this.singleVideo;
-    console.log(this.eventVideo);
   }
 
   onVideoSelect(id: number) {
@@ -98,34 +96,29 @@ export class VideosComponent implements OnInit, AfterViewInit {
     this.clear = '';
   }
 
-  trackTime(){
-    this.time = document.getElementsByTagName('video')[0].currentTime.toFixed(2);
-    this.totalTime = document.getElementsByTagName('video')[0].duration.toFixed(2);
-    setInterval(() => {
-     const elTime = document.getElementsByTagName('video')[0].currentTime;
-     this.time = elTime.toFixed(2);
-     this.checkElapsedTime();
-    }, 200);
+  trackTime() {
+    const player = document.getElementById('singleVideo');
+    player.addEventListener('timeupdate', () => {
+      // @ts-ignore
+      this.totalTime = player.duration.toFixed(2);
+      // @ts-ignore
+      this.time = player.currentTime.toFixed(2);
+      if ( Number(this.time) > Number(this.totalTime) / 2){
+        if (!this.videoViewFired){
+         this.increment();
+        }
+      }
+    });
   }
 
-  checkElapsedTime(){
-    const t = Number(this.time);
-    const total = Number(this.totalTime);
-    if (t > total / 2 ){
-      this.increment();
-    }
-  }
-
-  increment() {
-    if (!this.viewsHasBeenIncremented){
-      this.singleVideoModel.videoViews += 1;
+  increment(){
+    if (!this.videoViewFired){
+      this.videoViewFired = true;
       this.apiService.incrementViews(this.singleVideoModel.videoId).subscribe();
-      console.log('----------------------------------------');
-      console.log('Api called from component!');
-      console.log('----------------------------------------');
-      this.viewsHasBeenIncremented = true;
+      this.singleVideoModel.videoViews++;
     }
   }
+
 }
 
 
