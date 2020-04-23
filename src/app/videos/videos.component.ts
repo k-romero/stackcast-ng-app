@@ -1,7 +1,19 @@
-import {Component, Directive, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Directive, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
 import { Video } from './model/video';
 import { Comment } from './model/comment';
 import {ApiService} from '../shared/api.service';
+
+// @Directive({
+//   selector: '[appDirectVideo]'
+// })
+// export class CardHoverDirective {
+//   constructor(private el: ElementRef) {
+//     el.nativeElement.onplaying.call(increment);
+//   }
+//
+//
+// }
+
 
 @Component({
   selector: 'app-videos',
@@ -9,19 +21,21 @@ import {ApiService} from '../shared/api.service';
   styleUrls: ['./videos.component.scss']
 })
 export class VideosComponent implements OnInit {
-
-  @ViewChild('directVideo', { static: true }) directVideo: ElementRef;
-
-
   allVideos: Video[] = [];
   allComments: Comment[] = [];
-
   singleVideoModel: Video = undefined;
+
+  // for video views
+  videoViewFired = false;
+
   singleVideo = false;
-  event: string;
 
   newComment = null;
   clear: string;
+  isShow = false;
+  videoId = 0;
+  time = '00.00';
+  totalTime = '00.00';
   commentModel: Comment = {
     commentId: undefined,
     username: sessionStorage.getItem('username'),
@@ -31,10 +45,8 @@ export class VideosComponent implements OnInit {
     video: undefined
   };
 
-  isShow = false;
-  videoId = 0;
-
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService) {
+  }
 
   ngOnInit() {
     this.getAllVideos();
@@ -68,7 +80,6 @@ export class VideosComponent implements OnInit {
       err => {
         alert('An error has occurred fetching comments!');
       });
-    console.log(this.videoId);
   }
 
   public addCommentToVideo(videoId: number, ){
@@ -84,13 +95,30 @@ export class VideosComponent implements OnInit {
     );
     this.clear = '';
   }
-  // TODO figure out how to use eventListeners
 
-  // increment(){
-  //   this.controller = this.directVideo.nativeElement.controller;
-  //   this.controller.addEventListener('directVideo', () => this.increment(), true);
-  //   this.singleVideoModel.videoViews += 1;
-  // }
+  trackTime() {
+    const player = document.getElementById('singleVideo');
+    player.addEventListener('timeupdate', () => {
+      // @ts-ignore
+      this.totalTime = player.duration.toFixed(2);
+      // @ts-ignore
+      this.time = player.currentTime.toFixed(2);
+      if ( Number(this.time) > Number(this.totalTime) / 2){
+        if (!this.videoViewFired){
+         this.increment();
+        }
+      }
+    });
+  }
+
+  increment(){
+    if (!this.videoViewFired){
+      this.videoViewFired = true;
+      this.apiService.incrementViews(this.singleVideoModel.videoId).subscribe();
+      this.singleVideoModel.videoViews++;
+    }
+  }
 
 }
+
 
