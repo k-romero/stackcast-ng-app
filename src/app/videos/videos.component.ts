@@ -112,6 +112,7 @@ export class VideosComponent implements OnInit {
     });
   }
 
+
   increment(){
     if (!this.videoViewFired){
       this.videoViewFired = true;
