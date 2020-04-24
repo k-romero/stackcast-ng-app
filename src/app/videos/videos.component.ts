@@ -27,15 +27,16 @@ export class VideosComponent implements OnInit {
 
   // for video views
   videoViewFired = false;
+  time = '00.00';
+  totalTime = '00.00';
+  videoEnded = false;
 
   singleVideo = false;
-
   newComment = null;
   clear: string;
   isShow = false;
   videoId = 0;
-  time = '00.00';
-  totalTime = '00.00';
+
   commentModel: Comment = {
     commentId: undefined,
     username: sessionStorage.getItem('username'),
@@ -117,6 +118,10 @@ export class VideosComponent implements OnInit {
       this.apiService.incrementViews(this.singleVideoModel.videoId).subscribe();
       this.singleVideoModel.videoViews++;
     }
+  }
+
+  resetVideoView(){
+    this.videoViewFired = false;
   }
 
 }

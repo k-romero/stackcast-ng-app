@@ -27,7 +27,7 @@
       </div>
       <div class="video-buttons single-video-buttons">
         <button (click)="onVideoSelect(singleVideoModel.videoId);toggleHiddenDiv();" class="single-video-button">Show/Hide Comments</button>
-        <button (click)="singleVideo=!singleVideo; isShow=false" class="single-video-button single-video-button-end">Back to videos</button>
+        <button (click)="singleVideo=!singleVideo; isShow=false; resetVideoView()" class="single-video-button single-video-button-end">Back to videos</button>
       </div>
     </div>
     <div *ngIf="isShow" class="comment-container">
