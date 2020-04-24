@@ -99,6 +99,13 @@ export class VideosComponent implements OnInit {
     });
   }
 
+  addLikes(videoId: number){
+    this.apiService.incrementLikes(videoId).subscribe();
+  }
+
+  addDisLikes(videoId: number){
+    this.apiService.incrementDisLikes(videoId).subscribe();
+  }
 
   increment(){
     if (!this.videoViewFired){
