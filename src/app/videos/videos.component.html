@@ -24,7 +24,7 @@
       <div class="video-details-title video-details-title-single">
         <h5>{{singleVideoModel.videoName}}</h5>
         <p class="video-details-view">{{singleVideoModel.videoViews}} views | {{time}} / {{totalTime}}
-          | <i (click)="addLikes(singleVideoModel.videoId)" class="fa fa-thumbs-o-up"></i> {{singleVideoModel.likes}} | <i (click)="addDisLikes(singleVideoModel.videoId)" class="fa fa-thumbs-o-down"></i>  {{singleVideoModel.dislikes}}</p>
+          | <i (click)="addLikes(singleVideoModel.videoId)" class="fa fa-thumbs-o-up video-details-view-likes"></i> {{singleVideoModel.likes}} | <i (click)="addDisLikes(singleVideoModel.videoId)" class="fa fa-thumbs-o-down video-details-view-dislikes"></i>  {{singleVideoModel.dislikes}}</p>
       </div>
       <div class="video-buttons single-video-buttons">
         <button (click)="onVideoSelect(singleVideoModel.videoId);toggleHiddenDiv();" class="single-video-button">Show/Hide Comments</button>
