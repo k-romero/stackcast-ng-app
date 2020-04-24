@@ -3,18 +3,6 @@ import { Video } from './model/video';
 import { Comment } from './model/comment';
 import {ApiService} from '../shared/api.service';
 
-// @Directive({
-//   selector: '[appDirectVideo]'
-// })
-// export class CardHoverDirective {
-//   constructor(private el: ElementRef) {
-//     el.nativeElement.onplaying.call(increment);
-//   }
-//
-//
-// }
-
-
 @Component({
   selector: 'app-videos',
   templateUrl: './videos.component.html',
@@ -29,7 +17,6 @@ export class VideosComponent implements OnInit {
   videoViewFired = false;
   time = '00.00';
   totalTime = '00.00';
-  videoEnded = false;
 
   singleVideo = false;
   newComment = null;
