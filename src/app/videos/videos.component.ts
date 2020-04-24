@@ -101,10 +101,12 @@ export class VideosComponent implements OnInit {
 
   addLikes(videoId: number){
     this.apiService.incrementLikes(videoId).subscribe();
+    this.singleVideoModel.likes++;
   }
 
   addDisLikes(videoId: number){
     this.apiService.incrementDisLikes(videoId).subscribe();
+    this.singleVideoModel.dislikes++;
   }
 
   increment(){
