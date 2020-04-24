@@ -6,6 +6,8 @@ export class Video {
   videoPath: string;
   videoType: string;
   videoViews: number;
+  likes: number;
+  dislikes: number;
   originalVideoKey: string;
   userId: number;
   comments: Comment[];
