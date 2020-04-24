@@ -48,6 +48,15 @@ $roboto-cond: "Roboto Condensed", serif;
   color: black;
 }
 
+.video-button-group {
+  height: 40px;
+
+  & button {
+    height: 100%;
+  }
+}
+
+
 .video-details h5 {
   padding-top: 8px;
   padding-left: 2%;
@@ -169,6 +178,7 @@ textarea {
   margin: 10% auto 0;
 }
 
+
 .video-comment-button {
   position: relative;
   width: 100%;
@@ -189,8 +199,7 @@ textarea {
 
 }
 .empty-copy {
-  margin: 0 auto;
-  margin-top: -15%;
+  margin: -15% auto 0;
   font-family: $roboto-cond;
   font-size: 2rem;
   color: #bbbbbb;
@@ -203,10 +212,97 @@ textarea {
   max-width: 50%;
   margin: 0 auto;
 }
-@media (max-width: 1200px) {
+
+.trash-button {
+  color: #d5220e;
+  padding: 0 10px;
+
+  &:hover {
+    color: white;
+    background-color: #d5220e;
+  }
+}
+.modal-delete {
+  text-align: center;
+
+  &-header {
+    margin: 0 auto;
+    color: rgba(255, 38, 0, 0.82);
+
+    & h4 {
+      font-size: 1.2rem;
+    }
+    &-success{
+      color: #4cb317;
+    }
+
+  }
+
+  &-contents {
+    & h4{
+      font-size: 1rem;
+    }
+
+    &-button-group{
+
+      & button{
+        padding: 5px 15px;
+      }
+
+    }
+
+  }
+}
+
+svg {
+  width: 100px;
+  display: block;
+  margin: 10px auto 15px;
+  color: #4cb317;
+}
+
+.path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 0;
+  &.circle {
+    -webkit-animation: dash .9s ease-in-out;
+    animation: dash .9s ease-in-out;
+  }
+  &.check {
+    stroke-dashoffset: -100;
+    -webkit-animation: dash-check .9s .35s ease-in-out forwards;
+    animation: dash-check .9s .35s ease-in-out forwards;
+  }
+}
+
+@-webkit-keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
+}
+
+@keyframes dash-check {
+  0% {
+    stroke-dashoffset: -100;
+  }
+  100% {
+    stroke-dashoffset: 900;
+  }
+}
+
+
+
+@media (max-width: 1320px) {
   .video-wrapper {
     display: block;
     width: 100%;
+  }
+
+  .video-details h5{
+    font-size: 1rem;
   }
 
   .video-modal-contents {

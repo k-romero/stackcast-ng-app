@@ -88,4 +88,14 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
+
+
+
+  public deleteVideo(id: number){
+    this.apiService.delete(id).subscribe(
+      res => {
+        console.log('video with id=' + id + 'deleted');
+      }
+    );
+  }
 }

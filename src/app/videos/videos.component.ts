@@ -3,18 +3,6 @@ import { Video } from './model/video';
 import { Comment } from './model/comment';
 import {ApiService} from '../shared/api.service';
 
-// @Directive({
-//   selector: '[appDirectVideo]'
-// })
-// export class CardHoverDirective {
-//   constructor(private el: ElementRef) {
-//     el.nativeElement.onplaying.call(increment);
-//   }
-//
-//
-// }
-
-
 @Component({
   selector: 'app-videos',
   templateUrl: './videos.component.html',
@@ -27,15 +15,15 @@ export class VideosComponent implements OnInit {
 
   // for video views
   videoViewFired = false;
+  time = '00.00';
+  totalTime = '00.00';
 
   singleVideo = false;
-
   newComment = null;
   clear: string;
   isShow = false;
   videoId = 0;
-  time = '00.00';
-  totalTime = '00.00';
+
   commentModel: Comment = {
     commentId: undefined,
     username: sessionStorage.getItem('username'),
@@ -111,12 +99,26 @@ export class VideosComponent implements OnInit {
     });
   }
 
+  addLikes(videoId: number){
+    this.apiService.incrementLikes(videoId).subscribe();
+    this.singleVideoModel.likes++;
+  }
+
+  addDisLikes(videoId: number){
+    this.apiService.incrementDisLikes(videoId).subscribe();
+    this.singleVideoModel.dislikes++;
+  }
+
   increment(){
     if (!this.videoViewFired){
       this.videoViewFired = true;
       this.apiService.incrementViews(this.singleVideoModel.videoId).subscribe();
       this.singleVideoModel.videoViews++;
     }
+  }
+
+  resetVideoView(){
+    this.videoViewFired = false;
   }
 
 }

@@ -49,9 +49,25 @@ $roboto-cond: "Roboto Condensed", serif;
   }
 
   &-view {
-    color: #898989;
+    font-size: 1.2rem;
+    color: #5e5e5e;
     margin-left: 15px;
     padding-top: 10px;
+
+    &-likes{
+
+      &:hover{
+        color: #0dad35;
+      }
+
+    }
+
+    &-dislikes{
+
+      &:hover{
+        color: #d54909;
+      }
+    }
   }
 }
 
