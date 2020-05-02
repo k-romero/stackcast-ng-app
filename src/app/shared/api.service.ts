@@ -11,7 +11,7 @@ import {map} from 'rxjs/operators';
 })
 export class ApiService {
   // BASE URLS
-  private BASE_URL = 'http://localhost:8080/zc-video-app';
+  private BASE_URL = 'https://stackcast.herokuapp.com/zc-video-app';
   private BASE_URL_VIDEOS = `${this.BASE_URL}\\videos`;
   private BASE_URL_COMMENTS = `${this.BASE_URL}\\comments`;
   private BASE_URL_USERS = `${this.BASE_URL}\\users`;
@@ -34,7 +34,7 @@ export class ApiService {
   private  FIND_USER_BY_USERNAME =  `${this.BASE_URL_USERS}\\find`;
 
   // AUTHENTICATION ENDPOINT
-  private REGISTER_NEW_USER = 'http://localhost:8080/register';
+  private REGISTER_NEW_USER = 'https://stackcast.herokuapp.com/register';
 
   constructor(private http: HttpClient) {}
 
